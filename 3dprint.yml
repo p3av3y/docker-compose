@@ -6,7 +6,7 @@ services:
     ports:
       - "8001:80"
     volumes:
-      - '/srv/docker/apps/mailsail/config.json:/usr/share/nginx/html/config.josn'
+      - '/srv/docker/apps/mainsail/config.json:/usr/share/nginx/html/config.josn'
     restart: unless-stopped
     deploy:
       mode: replicated
