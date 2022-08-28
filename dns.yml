@@ -1,0 +1,45 @@
+version: '3.2'
+
+services:
+  
+  pihole:
+    image: pihole/pihole:latest
+    hostname: pihole0{{.Task.Slot}}
+    domainname: peav.us
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    environment:
+      TZ: 'America/Chicago'
+      WEBPASSWORD: 'RedRum75&%'
+      VIRTUAL_HOST: pihole0{{.Task.Slot}}.peav.us
+    volumes:
+      - '/srv/docker/apps/pihole/etc-pihole:/etc/pihole'
+      - '/srv/docker/apps/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'    
+    cap_add:
+      - NET_ADMIN    
+    restart: unless-stopped
+    networks:
+      - dns
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    deploy:
+      mode: replicated
+      replicas: 3
+      
+  unbound:
+    container_name: unbound
+    image: klutchell/unbound:latest
+    ports:
+      - 5300:53/udp
+      - 5300:53/tcp
+    restart: unless-stopped
+    deploy:
+      mode: replicated
+      replicas: 3
+      
+networks:
+  dns:
+    external: true
