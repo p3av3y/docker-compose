@@ -12,3 +12,7 @@ services:
     environment:
       - PASSWORD=RedRum75&%
     restart: unless-stopped
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker03]
