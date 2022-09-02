@@ -38,6 +38,8 @@ services:
     volumes:
       - '/srv/docker/appdata/unbound:/opt/unbound/etc/unbound'
     restart: unless-stopped
+    networks:
+      - dns
     deploy:
       mode: replicated
       replicas: 3
