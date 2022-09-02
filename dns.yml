@@ -20,8 +20,6 @@ services:
     cap_add:
       - NET_ADMIN    
     restart: unless-stopped
-    networks:
-      - dns
     dns:
       - 127.0.0.1
       - 1.1.1.1
@@ -38,12 +36,6 @@ services:
     volumes:
       - '/srv/docker/appdata/unbound:/opt/unbound/etc/unbound'
     restart: unless-stopped
-    networks:
-      - dns
     deploy:
       mode: replicated
       replicas: 3
-      
-networks:
-  dns:
-    external: true
