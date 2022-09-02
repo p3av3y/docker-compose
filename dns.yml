@@ -35,6 +35,8 @@ services:
     ports:
       - 5300:53/udp
       - 5300:53/tcp
+    volumes:
+      - '/srv/docker/appdata/unbound:/opt/unbound/etc/unbound'
     restart: unless-stopped
     deploy:
       mode: replicated
