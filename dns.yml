@@ -15,8 +15,8 @@ services:
       WEBPASSWORD: 'RedRum75&%'
       VIRTUAL_HOST: pihole0{{.Task.Slot}}.peav.us
     volumes:
-      - '/srv/docker/apps/pihole/etc-pihole:/etc/pihole'
-      - '/srv/docker/apps/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'    
+      - '/srv/docker/appdata/pihole/etc-pihole:/etc/pihole'
+      - '/srv/docker/appdata/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'    
     cap_add:
       - NET_ADMIN    
     restart: unless-stopped
