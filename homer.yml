@@ -1,3 +1,5 @@
+version: '3.6'
+
 services:
   homer:
     image: b4bz/homer
@@ -5,9 +7,13 @@ services:
     #build: .
     container_name: homer
     volumes:
-      - /your/local/assets/:/www/assets
+      - /srv/docker/appdata/homer:/www/assets
     ports:
       - 8080:8080
-    user: 1000:1000 # default
     environment:
       - INIT_ASSETS=1 # default
+    restart: unless-stopped
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker03]
