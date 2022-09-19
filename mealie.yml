@@ -8,7 +8,8 @@ services:
       - 9925:80
     environment:
       TZ: America/Chicago
-
+      PUID: 0
+      PGID: 0
       # Default Recipe Settings
       RECIPE_PUBLIC: 'true'
       RECIPE_SHOW_NUTRITION: 'true'
