@@ -16,4 +16,4 @@ services:
     deploy:
       replicas: 1
       placement:
-        constraints: [node.hostname == docker03]
+        constraints: [node.hostname == ra]
