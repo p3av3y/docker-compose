@@ -12,6 +12,8 @@ services:
       - 8080:8080
     environment:
       - INIT_ASSETS=1 # default
+      - UID=0
+      - GID=0
     restart: unless-stopped
     deploy:
       replicas: 1
