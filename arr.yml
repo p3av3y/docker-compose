@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     volumes:
       - /srv/docker/appdata/sabnzbd:/config
-      - /mnt/galaxy/media/downloads/complete:/downloads
+      - /mnt/galaxy/media/downloads:/downloads
       - /mnt/galaxy/media/downloads/incomplete:/incomplete-downloads
       #- /srv/docker/appdata/teleport/data:/shared
     deploy:
