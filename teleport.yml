@@ -4,7 +4,8 @@ services:
   teleport:
     # gravitational/teleport · Quay
     # https://quay.io/repository/gravitational/teleport?tab=tags&tag=latest
-    image: quay.io/gravitational/teleport
+    # image: quay.io/gravitational/teleport
+    image: public.ecr.aws/gravitational/teleport:10
     ports:
       - "3022:3022"
       - "3023:3023"
