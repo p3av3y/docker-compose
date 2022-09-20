@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   sabnzbd:
-    image: linuxserver/sabnzbd
+    image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
     ports:
       - "8080:8080"
@@ -18,3 +18,20 @@ services:
      replicas: 1
      placement:
        constraints: [node.hostname == ra]
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    ports:
+      - "7878:7878"
+    environment:
+      TZ: 'America/Chicago'
+    restart: unless-stopped
+    volumes:
+      - /srv/docker/appdata/radarr:/config
+      - /mnt/galaxy/media/movies:/movies
+      - /mnt/galaxy/media/downloads:/downloads
+    deploy:
+    replicas: 1
+    placement:
+      constraints: [node.hostname == ra] 
