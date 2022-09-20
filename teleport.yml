@@ -17,7 +17,7 @@ services:
       - "3080:3080"
     restart: unless-stopped
     volumes:
-      - /srv/docker/appdata/teleport/etc/teleport:/etc/teleport
+      - /srv/docker/appdata/teleport/config:/etc/teleport
       - /srv/docker/appdata/teleport/data:/var/lib/teleport
     deploy:
       replicas: 1
