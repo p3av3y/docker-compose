@@ -1,35 +1,24 @@
 version: '3.6'
 
 services:
-  configure:
-    image: quay.io/gravitational/teleport
-    container_name: teleport-configure
-    entrypoint: /bin/sh
-    command: -c "if [ ! -f /etc/teleport/teleport.yaml ]; then teleport configure > /etc/teleport/teleport.yaml; fi"
-    volumes:
-      - /srv/docker/appdata/teleport/config:/etc/teleport
-    restart: unless-stopped
-    deploy:
-      replicas: 1
-      placement:
-        constraints: [node.hostname == ra]
-
   teleport:
+    # gravitational/teleport · Quay
+    # https://quay.io/repository/gravitational/teleport?tab=tags&tag=latest
     image: quay.io/gravitational/teleport
-    container_name: teleport
-    entrypoint: /bin/sh
-    command: -c "sleep 1 && /bin/dumb-init teleport start -c /etc/teleport/teleport.yaml"
     ports:
+      - "3022:3022"
       - "3023:3023"
       - "3024:3024"
       - "3025:3025"
+      - "3026:3026"
+      - "3027:3027"
+      - "3028:3028"
+      - "3036:3036"
       - "3080:3080"
-    volumes:
-      - /srv/docker/appdata/teleport/config:/etc/teleport
-      - /srv/docker/appdata/teleport/data:/var/lib/teleport
-    depends_on:
-      - configure
     restart: unless-stopped
+    volumes:
+      - /srv/docker/appdata/teleport/etc/teleport:/etc/teleport
+      - /srv/docker/appdata/teleport/data:/var/lib/teleport
     deploy:
       replicas: 1
       placement:
