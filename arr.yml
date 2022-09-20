@@ -32,6 +32,6 @@ services:
       - /mnt/galaxy/media/movies:/movies
       - /mnt/galaxy/media/downloads:/downloads
     deploy:
-    replicas: 1
-    placement:
-      constraints: [node.hostname == ra] 
+     replicas: 1
+     placement:
+       constraints: [node.hostname == ra]
