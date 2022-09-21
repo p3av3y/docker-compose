@@ -25,7 +25,6 @@ services:
       - 32414:32414/udp
     devices:
       - /dev/dri:/dev/dri
-      - /dev/dvb:/dev/dvb
     restart: unless-stopped
     deploy:
      replicas: 1
