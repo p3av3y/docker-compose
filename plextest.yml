@@ -8,14 +8,10 @@ services:
     environment:
       - TZ=America/Chicago
       - VERSION=docker
-      - PLEX_CLAIM=claim-yE8yexa774k51ysJQcm7
     volumes:
       - /srv/docker/appdata/plextest:/config
       - /mnt/galaxy/media/tv:/tv
       - /mnt/galaxy/media/movies:/movies
-    devices:
-      - /dev/dri:/dev/dri
-      - /dev/dvb:/dev/dvb
     restart: unless-stopped
     deploy:
      replicas: 1
