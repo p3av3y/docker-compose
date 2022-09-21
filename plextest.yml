@@ -7,7 +7,7 @@ services:
     environment:
       - TZ=America/Chicago
       - VERSION=docker
-      - ADVERTISE_IP=http://192.168.1.102:32400/
+      - ADVERTISE_IP=http://192.168.1.100:32400/
     hostname: plextest
     volumes:
       - /srv/docker/appdata/plextest:/config
@@ -23,6 +23,8 @@ services:
       - 32412:32412/udp
       - 32413:32413/udp
       - 32414:32414/udp
+	  devices:
+	    - /dev/dri:/dev/dri
     restart: unless-stopped
     deploy:
      replicas: 1
