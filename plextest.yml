@@ -4,25 +4,15 @@ services:
   plex:
     image: lscr.io/linuxserver/plex:latest
     container_name: plex
+    network_mode: host
     environment:
       - TZ=America/Chicago
       - VERSION=docker
-      - PLEX_CLAIM= #optional
+      - PLEX_CLAIM=claim-yE8yexa774k51ysJQcm7
     volumes:
       - /srv/docker/appdata/plextest:/config
       - /mnt/galaxy/media/tv:/tv
       - /mnt/galaxy/media/movies:/movies
-    ports:
-      -32400:32400
-      -1900:1900/udp
-      -3005:3005
-      -5353:5353/udp
-      -8324:8324
-      -32410:32410/udp
-      -32412:32412/udp
-      -32413:32413/udp
-      -32414:32414/udp
-      -32469:32469
     devices:
       - /dev/dri:/dev/dri
       - /dev/dvb:/dev/dvb
