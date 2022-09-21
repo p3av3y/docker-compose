@@ -33,5 +33,20 @@ services:
       - /mnt/galaxy/media/downloads:/downloads
     deploy:
      replicas: 1
+     
+   sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    ports:
+      - "8989:8989"
+    environment:
+      TZ: 'America/Chicago'
+    restart: unless-stopped
+    volumes:
+      - /srv/docker/appdata/sonarr:/config
+      - /mnt/galaxy/media/tv:/tv
+      - /mnt/galaxy/media/downloads:/downloads
+    deploy:
+     replicas: 1
      placement:
        constraints: [node.hostname == ra]
