@@ -23,8 +23,8 @@ services:
       - 32412:32412/udp
       - 32413:32413/udp
       - 32414:32414/udp
-	  devices:
-	    - /dev/dri:/dev/dri
+    devices:
+      - /dev/dri:/dev/dri
     restart: unless-stopped
     deploy:
      replicas: 1
