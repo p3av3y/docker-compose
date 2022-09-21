@@ -1,0 +1,23 @@
+version: '3.6'
+
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - TZ=America/Chicago
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+    volumes:
+      - /srv/docker/appdata/plextest:/config
+      - /mnt/galaxy/media/tv:/tv
+      - /mnt/galaxy/media/movies:/movies
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/dvb:/dev/dvb
+    restart: unless-stopped
+    deploy:
+     replicas: 1
+     placement:
+       constraints: [node.hostname == osiris]
