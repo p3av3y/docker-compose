@@ -54,6 +54,7 @@ services:
   nzbhydra2:
     image: lscr.io/linuxserver/nzbhydra2:latest
     container_name: nzbhydra2
+    user: root
     ports:
       - "5076:5076"
     environment:
