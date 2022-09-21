@@ -58,7 +58,9 @@ services:
     ports:
       - "5076:5076"
     environment:
-      TZ: 'America/Chicago'
+      - TZ: 'America/Chicago'
+      - PUID=0
+      - PGID=0
     restart: unless-stopped
     volumes:
       - /srv/docker/appdata/nzbhydra2:/config
