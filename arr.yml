@@ -50,3 +50,19 @@ services:
      replicas: 1
      placement:
        constraints: [node.hostname == ra]
+
+  nzbhydra2:
+    image: lscr.io/linuxserver/nzbhydra2:latest
+    container_name: nzbhydra2
+    ports:
+      - "5076:5076"
+    environment:
+      TZ: 'America/Chicago'
+    restart: unless-stopped
+    volumes:
+      - /srv/docker/appdata/nzbhydra2:/config
+      - /mnt/galaxy/media/downloads:/downloads
+    deploy:
+     replicas: 1
+     placement:
+       constraints: [node.hostname == ra]
