@@ -15,5 +15,8 @@ services:
     volumes:
       - /srv/docker/appdata/npm:/data
       - /mnt/galaxy/certificates/letsencrypt:/etc/letsencrypt
+    environment:
+      - DB_SQLITE_FILE="/data/npm.sqlite"
+      - TZ="America/Chicago"
     deploy:
       replicas: 1
