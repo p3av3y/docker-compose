@@ -5,6 +5,7 @@ services:
     image: ghcr.io/arabcoders/watchstate:latest
     # To change the user/group id associated with the tool change the following line.
     #user: "${UID:-1000}:${GID:-1000}"
+    user: "0:0"
     container_name: watchstate
     restart: unless-stopped
     # For information about supported environment variables visit FAQ page.
