@@ -16,7 +16,11 @@ services:
       - /srv/docker/appdata/npm:/data
       - /mnt/galaxy/certificates/letsencrypt:/etc/letsencrypt
     environment:
-      - DB_SQLITE_FILE="/data/npm.sqlite"
-      - TZ="America/Chicago"
+      - DB_SQLITE_FILE=/data/npm.sqlite
+      - TZ=America/Chicago
+      - PUID=0
+      - GUID=0
     deploy:
-      replicas: 1
+     replicas: 1
+     placement:
+       constraints: [node.hostname == ra]
