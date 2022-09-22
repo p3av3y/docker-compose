@@ -11,7 +11,7 @@ services:
     # For information about supported environment variables visit FAQ page.
     # works for both global and container specific environment variables. 
     environment:
-      - WS_TZ=America\Chicago # Set timezone.
+      - WS_TZ=America/Chicago # Set timezone.
     ports:
       - "8082:8080" # webhook listener port.
     volumes:
