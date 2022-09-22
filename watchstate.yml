@@ -1,0 +1,21 @@
+version: '3.6'
+
+services:
+  watchstate:
+    image: ghcr.io/arabcoders/watchstate:latest
+    # To change the user/group id associated with the tool change the following line.
+    #user: "${UID:-1000}:${GID:-1000}"
+    container_name: watchstate
+    restart: unless-stopped
+    # For information about supported environment variables visit FAQ page.
+    # works for both global and container specific environment variables. 
+    environment:
+      - WS_TZ=America\Chicago # Set timezone.
+    ports:
+      - "8082:8080" # webhook listener port.
+    volumes:
+      - /srv/docker/appdata/watchstate:/config:rw # mount current directory to container /config directory.
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == ra]
