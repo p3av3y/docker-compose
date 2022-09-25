@@ -4,7 +4,7 @@ services:
   qdirstat:
     image: jlesage/qdirstat
     ports:
-      - 58001:5800
+      - 5801:5800
     volumes:
       - /srv/docker/appdata/qdirstat:/config
       - /galaxy:/storage/galaxy:ro
