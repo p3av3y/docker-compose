@@ -1,0 +1,59 @@
+
+
+services:
+  diskover:
+    image: lscr.io/linuxserver/diskover
+    container_name: diskover
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=America/Chicago
+      - ES_HOST=elasticsearch
+      - ES_PORT=9200
+    volumes:
+      - /srv/docker/appdata/diskover:/config
+      - /galaxy:/data/galaxy
+      - /nebula:/data/nebula
+    ports:
+      - 8002:80
+    mem_limit: 4096m
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == anubis]
+  
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /srv/docker/appdata/elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    depends_on:
+      - elasticsearch-helper
+    restart: unless-stopped
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == anubis]
+  
+  elasticsearch-helper:
+    image: alpine
+    command: sh -c "sysctl -w vm.max_map_count=262144"
+    privileged: true
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == anubis]
