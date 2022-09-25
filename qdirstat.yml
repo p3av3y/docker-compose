@@ -1,0 +1,16 @@
+version: '3.6'
+
+services:
+  qdirstat:
+    image: jlesage/qdirstat
+    ports:
+      - 58001:5800
+    volumes:
+      - /srv/docker/appdata/qdirstat:/config
+      - /galaxy:/storage/galaxy:ro
+      - /nebula:/storage/nebula:ro
+    restart: unless-stopped
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == ra]
