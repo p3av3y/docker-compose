@@ -1,4 +1,4 @@
-
+version: '3.6'
 
 services:
   diskover:
@@ -16,7 +16,7 @@ services:
       - /nebula:/data/nebula
     ports:
       - 8002:80
-    #mem_limit: 4096m
+    mem_limit: 4096m
     restart: unless-stopped
     depends_on:
       - elasticsearch
