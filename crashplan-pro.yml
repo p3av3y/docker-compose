@@ -11,7 +11,7 @@ services:
       - PGID=0
       - CRASHPLAN_SRV_MAX_MEM=8192M
     volumes:
-      - /srv/docker/appdata/crashplan-pro:/config
+      - /nebula/docker/appdata/crashplan-pro:/config
       - /galaxy:/storage/galaxy
       - /nebula:/storage/nebula
     restart: unless-stopped
