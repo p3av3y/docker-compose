@@ -12,7 +12,7 @@ services:
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
     volumes:
-      - /srv/docker/appdata/npm:/data
+      - /nebula/docker/appdata/npm:/data
       - /mnt/galaxy/certificates/letsencrypt:/etc/letsencrypt
     environment:
       - DB_SQLITE_FILE=/data/npm.sqlite
@@ -22,4 +22,4 @@ services:
     deploy:
      replicas: 1
      placement:
-       constraints: [node.hostname == osiris]
+       constraints: [node.hostname == ra]
