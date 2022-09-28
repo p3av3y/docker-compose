@@ -11,7 +11,7 @@ services:
       - ES_HOST=elasticsearch
       - ES_PORT=9200
     volumes:
-      - /srv/docker/appdata/diskover:/config
+      - /nebula/docker/appdata/diskover:/config
       - /galaxy:/data/galaxy
       - /nebula:/data/nebula
     ports:
@@ -38,7 +38,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /srv/docker/appdata/elasticsearch:/usr/share/elasticsearch/data
+      - /nebula/docker/appdata/elasticsearch:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
     depends_on:
@@ -57,4 +57,3 @@ services:
       replicas: 1
       placement:
         constraints: [node.labels.nodetype == data]
-
