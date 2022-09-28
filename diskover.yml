@@ -51,7 +51,7 @@ services:
   
   elasticsearch-helper:
     image: alpine
-    command: sh -c "sysctl -w vm.max_map_count=262144"
+    #command: sh -c "sysctl -w vm.max_map_count=262144"
     privileged: true
     deploy:
       replicas: 1
