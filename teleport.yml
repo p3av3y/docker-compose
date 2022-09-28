@@ -18,9 +18,9 @@ services:
       - "3080:3080"
     restart: unless-stopped
     volumes:
-      - /srv/docker/appdata/teleport/config:/etc/teleport
-      - /srv/docker/appdata/teleport/data:/var/lib/teleport
+      - /nebula/docker/appdata/teleport/config:/etc/teleport
+      - /nebula/docker/appdata/teleport/data:/var/lib/teleport
     deploy:
       replicas: 1
       placement:
-        constraints: [node.hostname == ra]
+        constraints: [node.labels.nodetype == tiny]
