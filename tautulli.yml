@@ -1,6 +1,5 @@
 version: '3.6'
 
-
 services:
   tautulli:
     image: lscr.io/linuxserver/tautulli:latest
@@ -10,12 +9,12 @@ services:
       - PGID=0
       - TZ=America/Chicago
     volumes:
-      - /srv/docker/appdata/tautulli:/config
-      - /srv/docker/appdata/tautulli/logs:/logs
+      - /nebula/docker/appdata/tautulli:/config
+      - /nebula/docker/appdata/tautulli/logs:/logs
     ports:
       - 8181:8181
     restart: unless-stopped
     deploy:
       replicas: 1
       placement:
-        constraints: [node.hostname == osiris]
+        constraints: [node.hostname == ra]
