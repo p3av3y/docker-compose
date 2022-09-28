@@ -5,8 +5,8 @@ services:
     image: lscr.io/linuxserver/diskover
     container_name: diskover
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=5219
+      - PGID=5219
       - TZ=America/Chicago
       - ES_HOST=elasticsearch
       - ES_PORT=9200
@@ -23,7 +23,7 @@ services:
     deploy:
       replicas: 1
       placement:
-        constraints: [node.hostname == anubis]
+        constraints: [node.labels.nodetype == data]
   
   elasticsearch:
     container_name: elasticsearch
@@ -47,7 +47,7 @@ services:
     deploy:
       replicas: 1
       placement:
-        constraints: [node.hostname == anubis]
+        constraints: [node.labels.nodetype == data]
   
   elasticsearch-helper:
     image: alpine
@@ -56,4 +56,5 @@ services:
     deploy:
       replicas: 1
       placement:
-        constraints: [node.hostname == anubis]
+        constraints: [node.labels.nodetype == data]
+
