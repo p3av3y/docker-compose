@@ -23,7 +23,7 @@ services:
       # WORKERS_PER_CORE: 0.5
       # MAX_WORKERS: 8
     volumes:
-      - /srv/docker/appdata/mealie:/app/data
+      - /nebula/docker/appdata/mealie:/app/data
     restart: unless-stopped
     deploy:
       replicas: 1
