@@ -20,4 +20,4 @@ services:
     deploy:
       replicas: 1
       placement:
-        constraints: [node.hostname == ra]
+        constraints: [node.label.nodetype == tiny]
