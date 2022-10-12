@@ -1,0 +1,28 @@
+version: '3.6'
+
+services:
+  filebrowser:
+    container_name: filebrowser
+    image: filebrowser/filebrowser:latest
+    restart: unless-stopped
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=America/Chicago
+    ports:
+      - 8084:80
+    volumes:
+      - /mnt/galaxy:/srv/galaxy
+      - /nebula/docker:/srv/docker
+      - /nebula/docker/appdata/filebrowser/database.db:/database.db
+      - /nebula/docker/appdata/filebrowser/.filebrowser.json:/.filebrowser.json
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+    environment:
+      - TZ=America/Chicago
+      - PUID=0
+      - GUID=0
+    deploy:
+     replicas: 1
+     placement:
+        constraints: [node.labels.nodetype == tiny]
