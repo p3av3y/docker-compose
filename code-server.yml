@@ -17,7 +17,7 @@ services:
     volumes:
       - /nebula/docker/appdata/code-server:/config
     ports:
-      - 84431:8443
+      - 8444:8443
     restart: unless-stopped
     deploy:
       replicas: 1
