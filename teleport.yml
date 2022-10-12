@@ -20,6 +20,8 @@ services:
     volumes:
       - /nebula/docker/appdata/teleport/config:/etc/teleport
       - /nebula/docker/appdata/teleport/data:/var/lib/teleport
+      - /nebula/docker/share/certificates/npm/live/:/etc/letsencrypt/live/
+      - /nebula/docker/share/certificates/npm/archive/:/etc/letsencrypt/archive/
     deploy:
       replicas: 1
       placement:
