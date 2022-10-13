@@ -9,8 +9,8 @@ services:
       - PGID=0
       - TZ=America/Chicago
     volumes:
-      - /nebula/docker/appdata/tautulli:/config
-      - /nebula/docker/appdata/tautulli/logs:/logs
+      - /srv/docker/appdata/tautulli:/config
+      - /srv/docker/appdata/tautulli/logs:/logs
     ports:
       - 8181:8181
     restart: unless-stopped
