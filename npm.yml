@@ -12,8 +12,10 @@ services:
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
     volumes:
-      - /nebula/docker/appdata/npm:/data
-      - /nebula/docker/share/certificates/npm/:/etc/letsencrypt
+      #- /nebula/docker/appdata/npm:/data
+      #- /nebula/docker/share/certificates/npm/:/etc/letsencrypt
+      - /srv/docker/appdata/npm:/data
+      - /srv/docker/share/certificates/npm/:/etc/letsencrypt
     environment:
       - DB_SQLITE_FILE=/data/npm.sqlite
       - TZ=America/Chicago
