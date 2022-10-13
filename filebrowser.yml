@@ -13,9 +13,9 @@ services:
       - 8084:80
     volumes:
       - /mnt/galaxy:/srv/galaxy
-      - /nebula/docker:/srv/docker
-      - /nebula/docker/appdata/filebrowser/database.db:/database.db
-      - /nebula/docker/appdata/filebrowser/.filebrowser.json:/.filebrowser.json
+      - /srv/docker:/srv/docker
+      - /srv/docker/appdata/filebrowser/database.db:/database.db
+      - /srv/docker/appdata/filebrowser/.filebrowser.json:/.filebrowser.json
     labels:
       - com.centurylinklabs.watchtower.enable=true
     environment:
