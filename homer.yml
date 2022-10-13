@@ -8,7 +8,7 @@ services:
     container_name: homer
     #user: root
     volumes:
-      - /nebula/docker/appdata/homer:/www/assets
+      - /srv/docker/appdata/homer:/www/assets
     ports:
       - 8081:8080
     environment:
