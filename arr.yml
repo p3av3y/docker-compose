@@ -13,10 +13,10 @@ services:
       - GUID=0
     restart: unless-stopped
     volumes:
-      - /nebula/docker/appdata/sabnzbd:/config
+      #- /nebula/docker/appdata/sabnzbd:/config
+      - /srv/docker/appdata/sabnzbd:/config
       - /mnt/galaxy/media/downloads:/downloads
       - /mnt/galaxy/media/downloads/incomplete:/incomplete-downloads
-      #- /srv/docker/appdata/teleport/data:/shared
     deploy:
      replicas: 1
      placement:
@@ -34,7 +34,8 @@ services:
       - GUID=0
     restart: unless-stopped
     volumes:
-      - /nebula/docker/appdata/radarr:/config
+      #- /nebula/docker/appdata/radarr:/config
+      - /srv/docker/appdata/radarr:/config
       - /mnt/galaxy/media/movies:/movies
       - /mnt/galaxy/media/downloads:/downloads
     deploy:
@@ -54,7 +55,8 @@ services:
       - GUID=0
     restart: unless-stopped
     volumes:
-      - /nebula/docker/appdata/sonarr:/config
+      #- /nebula/docker/appdata/sonarr:/config
+      - /srv/docker/appdata/sonarr:/config
       - /mnt/galaxy/media/tv:/tv
       - /mnt/galaxy/media/downloads:/downloads
     deploy:
@@ -73,7 +75,8 @@ services:
       PGID: '0'
     restart: unless-stopped
     volumes:
-      - /nebula/docker/appdata/nzbhydra2:/config
+      #- /nebula/docker/appdata/nzbhydra2:/config
+      - /srv/docker/appdata/nzbhydra2:/config
       - /mnt/galaxy/media/downloads:/downloads
     deploy:
      replicas: 1
