@@ -12,8 +12,8 @@ services:
     ports:
       - 8084:80
     volumes:
-      - /mnt/galaxy:/srv/galaxy
-      - /nebula/docker:/srv/docker
+      - /galaxy:/srv/galaxy
+      - /nebula:/srv/nebula
       - /nebula/docker/appdata/filebrowser/database.db:/database.db
       - /nebula/docker/appdata/filebrowser/.filebrowser.json:/.filebrowser.json
     labels:
