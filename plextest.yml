@@ -2,8 +2,8 @@ version: '3.6'
 
 services:
   plex:
-    #image: lscr.io/linuxserver/plex:latest
-    image: plexinc/pms-docker
+    image: lscr.io/linuxserver/plex:latest
+    #image: plexinc/pms-docker
     container_name: plex
     environment:
       - TZ=America/Chicago
