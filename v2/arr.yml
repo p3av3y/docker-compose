@@ -51,8 +51,3 @@ services:
     volumes:
       - /srv/docker/appdata/nzbhydra2:/config
       - /mnt/galaxy/media/downloads:/downloads
-
-networks:
-  default:
-    name: test
-    external: true
