@@ -4,65 +4,41 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
-    user: root
     ports:
       - "8080:8080"
     environment:
       - TZ=America/Chicago
-      - PUID=0
-      - GUID=0
     restart: unless-stopped
     volumes:
-      - /nebula/docker/appdata/sabnzbd:/config
-      #- /srv/docker/appdata/sabnzbd:/config
+      - /srv/docker/appdata/sabnzbd:/config
       - /mnt/galaxy/media/downloads:/downloads
       - /mnt/galaxy/media/downloads/incomplete:/incomplete-downloads
-    deploy:
-     replicas: 1
-     placement:
-       constraints: [node.labels.nodetype == data]
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
-    user: root
     ports:
       - "7878:7878"
     environment:
       - TZ=America/Chicago
-      - PUID=0
-      - GUID=0
     restart: unless-stopped
     volumes:
-      - /nebula/docker/appdata/radarr:/config
-      #- /srv/docker/appdata/radarr:/config
+      - /srv/docker/appdata/radarr:/config
       - /mnt/galaxy/media/movies:/movies
       - /mnt/galaxy/media/downloads:/downloads
-    deploy:
-     replicas: 1
-     placement:
-       constraints: [node.labels.nodetype == data]
      
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
-    user: root
     ports:
       - "8989:8989"
     environment:
       - TZ=America/Chicago
-      - PUID=0
-      - GUID=0
     restart: unless-stopped
     volumes:
-      - /nebula/docker/appdata/sonarr:/config
-      #- /srv/docker/appdata/sonarr:/config
+      - /srv/docker/appdata/sonarr:/config
       - /mnt/galaxy/media/tv:/tv
       - /mnt/galaxy/media/downloads:/downloads
-    deploy:
-     replicas: 1
-     placement:
-       constraints: [node.labels.nodetype == data]
 
   nzbhydra2:
     image: lscr.io/linuxserver/nzbhydra2:latest
@@ -70,15 +46,8 @@ services:
     ports:
       - "5076:5076"
     environment:
-      TZ: 'America/Chicago'
-      PUID: '0'
-      PGID: '0'
+      - TZ=America/Chicago
     restart: unless-stopped
     volumes:
-      - /nebula/docker/appdata/nzbhydra2:/config
-      #- /srv/docker/appdata/nzbhydra2:/config
+      - /srv/docker/appdata/nzbhydra2:/config
       - /mnt/galaxy/media/downloads:/downloads
-    deploy:
-     replicas: 1
-     placement:
-       constraints: [node.labels.nodetype == data]
