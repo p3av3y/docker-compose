@@ -1,0 +1,30 @@
+version: '3.6'
+
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    environment:
+      - TZ=America/Chicago
+      - VERSION=docker
+      - ADVERTISE_IP=http://192.168.1.50:32400/
+    hostname: pv
+    volumes:
+      - /srv/docker/appdata/plex:/config
+      - /mnt/galaxy/media:/media
+      - /mnt/galaxy/media/tv:/media/tv
+      - /mnt/galaxy/media/movies:/media/movies
+    ports:
+      - 32400:32400/tcp
+      - 3005:3005/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+    devices:
+      - "/dev/dri/card0:/dev/dri/card0"
+      - "/dev/dri/renderD128:/dev/dri/renderD128"
+    restart: unless-stopped
