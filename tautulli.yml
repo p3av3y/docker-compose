@@ -5,8 +5,8 @@ services:
     image: lscr.io/linuxserver/tautulli:latest
     container_name: tautulli
     environment:
-      - PUID=0
-      - PGID=0
+      - PUID=1980
+      - PGID=1980
       - TZ=America/Chicago
     volumes:
       - /nebula/docker/appdata/tautulli:/config
@@ -14,7 +14,3 @@ services:
     ports:
       - 8181:8181
     restart: unless-stopped
-    deploy:
-      replicas: 1
-      placement:
-        constraints: [node.labels.nodetype == data]
