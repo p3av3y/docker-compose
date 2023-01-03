@@ -5,6 +5,6 @@ services:
     container_name: cloudflared
     image: cloudflare/cloudflared
     restart: unless-stopped
-    command: tunnel run
+    command: tunnel run p3av3y
     volumes:
       - /srv/docker/appdata/cloudflared:/etc/cloudflared
