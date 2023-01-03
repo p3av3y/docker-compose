@@ -9,7 +9,7 @@ services:
       - VERSION=docker
       - PUID=1980
       - PGID=1980
-      #- ADVERTISE_IP=http://192.168.1.50:32400/
+      - ADVERTISE_IP=http://192.168.1.120:32400/
     hostname: pv
     volumes:
       - /srv/docker/appdata/plex:/config
