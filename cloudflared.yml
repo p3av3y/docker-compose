@@ -1,0 +1,10 @@
+version: '3.6'
+
+services:  
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    volumes:
+      - /srv/docker/appdata/cloudflared:/etc/cloudflared
