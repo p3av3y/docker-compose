@@ -7,15 +7,10 @@ services:
       - 5800:5800
     environment:
       - TZ=America/Chicago
-      - PUID=0
-      - PGID=0
+      - PUID=1980
+      - PGID=1980
       - CRASHPLAN_SRV_MAX_MEM=8192M
     volumes:
-      - /nebula/docker/appdata/crashplan-pro:/config
-      - /galaxy:/storage/galaxy
-      - /nebula:/storage/nebula
-    restart: unless-stopped
-    deploy:
-      replicas: 1
-      placement:
-        constraints: [node.labels.nodetype == data]
+      #- /nebula/docker/appdata/crashplan-pro:/config
+      #- /galaxy:/storage/galaxy
+      #- /nebula:/storage/nebula
