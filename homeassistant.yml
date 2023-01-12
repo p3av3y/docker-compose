@@ -1,0 +1,18 @@
+version: '3.6'
+
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    environment:
+      - TZ=America/Chicago
+      - PUID=1980
+      - GUID=1980
+    ports:
+      - 8123:8123
+    volumes:
+      - /srv/docker/appdata/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
