@@ -1,0 +1,15 @@
+version: '3.6'
+
+services:
+  signal:
+    container_name: signal
+    image: kasmweb/signal
+    restart: unless-stopped
+    environment:
+      - PUID=1980
+      - PGID=1980
+      - TZ=America/Chicago
+      - VNC_PW=HooVer75&%
+    ports:
+      - 6901:6901
+#    volumes:
