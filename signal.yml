@@ -3,7 +3,7 @@ version: '3.6'
 services:
   signal:
     container_name: signal
-    image: kasmweb/signal
+    image: kasmweb/signal:1.12.0
     restart: unless-stopped
     environment:
       - PUID=1980
