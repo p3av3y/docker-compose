@@ -9,8 +9,8 @@ services:
       - 5800:5800
     environment:
       - TZ=America/Chicago
-      - PUID=1980
-      - PGID=1980
+      #- PUID=1980
+      #- PGID=1980
       - CRASHPLAN_SRV_MAX_MEM=8192M
     volumes:
       - /srv/docker/appdata/crashplan-pro:/config
