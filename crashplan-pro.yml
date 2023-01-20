@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   crashplan-pro:
-    image: jlesage/crashplan-pro
+    image: jlesage/crashplan-pro:v22.12.2
     container_name: crashplan-pro
     hostname: crashplan-pro
     ports:
