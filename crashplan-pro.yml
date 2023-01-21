@@ -17,3 +17,4 @@ services:
       #- /galaxy:/storage/galaxy
       #- /nebula:/storage/nebula
       - /mnt/galaxy:/storage/galaxy
+      - /mnt/nebula:/storage/nebula
