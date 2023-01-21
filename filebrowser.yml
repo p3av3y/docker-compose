@@ -13,6 +13,7 @@ services:
       - 8084:80
     volumes:
       - /mnt:/srv/mnt
+      - /mnt/nebula/docker:/srv/mnt/nebula/docker
       - /srv/docker:/srv/local/docker
       #- /nebu:/srv/nebula
       - /srv/docker/appdata/filebrowser/database.db:/database.db
