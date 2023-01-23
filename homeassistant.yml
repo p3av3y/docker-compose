@@ -10,8 +10,6 @@ services:
       - GUID=1980
     ports:
       - 8123:8123
-    devices:
-      - /dev/ttyUSB0:/dev/zwave'
     volumes:
       - /srv/docker/appdata/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
