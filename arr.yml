@@ -13,8 +13,10 @@ services:
     restart: unless-stopped
     volumes:
       - /srv/docker/appdata/sabnzbd:/config
-      - /mnt/galaxy/media/downloads:/downloads
-      - /mnt/galaxy/media/downloads/incomplete:/incomplete-downloads
+      #- /mnt/galaxy/media/downloads:/downloads
+      #- /mnt/galaxy/media/downloads/incomplete:/incomplete-downloads
+      - /mnt/galaxy/downloads:/downloads
+      - /mnt/galaxy/downloads/incomplete:/incomplete-downloads
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -29,7 +31,8 @@ services:
     volumes:
       - /srv/docker/appdata/radarr:/config
       - /mnt/galaxy/media/movies:/movies
-      - /mnt/galaxy/media/downloads:/downloads
+      #- /mnt/galaxy/media/downloads:/downloads
+      - /mnt/galaxy/downloads:/downloads
      
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
@@ -44,7 +47,8 @@ services:
     volumes:
       - /srv/docker/appdata/sonarr:/config
       - /mnt/galaxy/media/tv:/tv
-      - /mnt/galaxy/media/downloads:/downloads
+      #- /mnt/galaxy/media/downloads:/downloads
+      - /mnt/galaxy/downloads:/downloads
 
   nzbhydra2:
     image: lscr.io/linuxserver/nzbhydra2:latest
@@ -58,4 +62,5 @@ services:
     restart: unless-stopped
     volumes:
       - /srv/docker/appdata/nzbhydra2:/config
-      - /mnt/galaxy/media/downloads:/downloads
+      #- /mnt/galaxy/media/downloads:/downloads
+      - /mnt/galaxy/downloads:/downloads
