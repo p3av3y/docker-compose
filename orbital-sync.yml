@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+  orbital-sync:
+    image: mattwebbio/orbital-sync:latest
+    environment:
+      - PRIMARY_HOST_BASE_URL=http://192.168.0.51
+      - PRIMARY_HOST_PASSWORD=${PIHOLE_PASSWORD}
+      - SECONDARY_HOST_1_BASE_URL=http://192.168.0.52
+      - SECONDARY_HOST_1_PASSWORD=${PIHOLE_PASSWORD}
+      - INTERVAL_MINUTES=30
