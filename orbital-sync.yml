@@ -3,6 +3,8 @@ version: '3.6'
 services:
   orbital-sync:
     image: mattwebbio/orbital-sync:latest
+    container_name: orbital-sync
+    restart: unless-stopped
     environment:
       - PRIMARY_HOST_BASE_URL=http://192.168.0.51
       - PRIMARY_HOST_PASSWORD=${PIHOLE_PASSWORD}
