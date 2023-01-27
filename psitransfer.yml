@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   nextcloud:
-    image: sitrax/psitransfer:latest
+    image: psitrax/psitransfer:latest
     container_name: psitransfer
     ports:
       - 3000:3000
