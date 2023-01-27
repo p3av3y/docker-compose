@@ -1,0 +1,16 @@
+version: '3.6'
+
+services:
+  nextcloud:
+    image: sitrax/psitransfer:latest
+    container_name: psitransfer
+    ports:
+      - 3000:3000
+    environment:
+      - PUID=1980
+      - PGID=1980
+      - TZ=America/Chicago
+      - PSITRANSFER_ADMIN_PASS=${PSITRANSFER_ADMIN_PASS}
+    volumes:
+      - /mnt/galaxy/downloads/psitransfer:/data
+    restart: unless-stopped
