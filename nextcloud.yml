@@ -12,5 +12,5 @@ services:
       - TZ=America/Chicago
     volumes:
       - /srv/docker/appdata/nextcloud:/config
-      - /mnt:/data
+      - /mnt/galaxy/nextcloud:/data
     restart: unless-stopped
