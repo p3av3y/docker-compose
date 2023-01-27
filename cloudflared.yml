@@ -1,6 +1,7 @@
 version: '3.6'
 
-services:  
+services:
+  cloudflared:
     container_name: cloudflared
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
