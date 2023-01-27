@@ -1,0 +1,15 @@
+version: '3.6'
+
+services:
+  putty:
+    container_name: putty
+    image: jlesage/putty:latest
+    restart: unless-stopped
+    ports:
+      - 5801:5800
+    environment:
+      - TZ=America/Chicago
+      - PUID=1980
+      - PGID=1980
+    volumes:
+      - /srv/docker/appdata/putty:/config
