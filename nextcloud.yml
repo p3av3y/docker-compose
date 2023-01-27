@@ -1,0 +1,16 @@
+version: '3.6'
+
+services:
+  nextcloud:
+    image: lscr.io/linuxserver/nextcloud:latest
+    container_name: nextcloud
+    ports:
+      - 443:443
+    environment:
+      - PUID=1980
+      - PGID=1980
+      - TZ=America/Chicago
+    volumes:
+      - /srv/docker/appdata/nextcloud:/config
+      - /mnt:/data
+    restart: unless-stopped
