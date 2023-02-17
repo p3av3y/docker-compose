@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  fileflows:
+    image: revenz/fileflows
+    container_name: fileflows
+    environment:
+      - TZ=America/Chicago
+      - TempPathHost=/path/to/temp
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /srv/docker/appdata/fileflows/data:/app/Data
+      - /srv/docker/appdata/fileflows/logs:/app/Logs
+      - /mnt/galaxy/downloads/transcode:/temp
+      - /mnt/galaxy/media/movies:/media/movies
+      - /mnt/galaxy/media/tv:/media/tv
+    ports:
+      - 5000:5000
+    restart: unless-stopped
