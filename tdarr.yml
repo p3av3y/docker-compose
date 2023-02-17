@@ -1,19 +1,26 @@
 version: "3.6"
 
 services:
-  tdarr_node:
-    container_name: tdarr_node
-    image: ghcr.io/haveagitgat/tdarr_node:latest
+  tdarr:
+    container_name: tdarr
+    image: ghcr.io/haveagitgat/tdarr:latest
     restart: unless-stopped
     network_mode: bridge
+    ports:
+      - 8265:8265 # webUI port
+      - 8266:8266 # server port
+      - 8267:8267 # Internal node port
+      - 8268:8268 # Example extra node port
     environment:
       - TZ=America/Chicago
       - PUID=1980
       - PGID=1980
       - UMASK_SET=002
-      - nodeID=master
       - serverIP=0.0.0.0
       - serverPort=8266
+      - webUIPort=8265
+      - internalNode=true
+      - nodeName=MainNode
     volumes:
       - /srv/docker/appdata/tdarr/server:/app/server
       - /srv/docker/appdata/tdarr/configs:/app/configs
