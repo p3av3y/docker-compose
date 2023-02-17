@@ -1,0 +1,23 @@
+version: "3.6"
+
+services:
+  tdarr_node:
+    container_name: tdarr_node
+    image: ghcr.io/haveagitgat/tdarr_node:latest
+    restart: unless-stopped
+    network_mode: bridge
+    environment:
+      - TZ=America/Chicago
+      - PUID=1980
+      - PGID=1980
+      - UMASK_SET=002
+      - nodeID=master
+      - serverIP=0.0.0.0
+      - serverPort=8266
+    volumes:
+      - /srv/docker/appdata/tdarr/server:/app/server
+      - /srv/docker/appdata/tdarr/configs:/app/configs
+      - /srv/docker/appdata/tdarr/logs:/app/logs
+      - /mnt/galaxy/media/movies:/media/movies
+      - /mnt/galaxy/media/tv:/media/tv
+      - /mnt/galaxy/downloads/transcode:/temp
