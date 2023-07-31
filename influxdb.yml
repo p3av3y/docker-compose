@@ -1,13 +1,13 @@
 version: "3.6"
 
 services:
-  influxdb:
+  influxdb2:
     image: influxdb:latest
-    container_name: influxdb
+    container_name: influxdb2
     environment:
       -DOCKER_INFLUXDB_INIT_MODE=setup
-      -DOCKER_INFLUXDB_INIT_USERNAME=$username
-      -DOCKER_INFLUXDB_INIT_PASSWORD=$password
+      -DOCKER_INFLUXDB_INIT_USERNAME=$USERNAME
+      -DOCKER_INFLUXDB_INIT_PASSWORD=$PASSWORD
       -DOCKER_INFLUXDB_INIT_ORG=pv
       -DOCKER_INFLUXDB_INIT_BUCKET=pv-bucket
     volumes:
