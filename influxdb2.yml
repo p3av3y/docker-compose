@@ -11,8 +11,8 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=pv
       - DOCKER_INFLUXDB_INIT_BUCKET=pv-bucket
     volumes:
-      - /srv/docker/appdata/influxdb:/var/lib/influxdb2
-      - /srv/docker/appdata/influxdb:/etc/influxdb2
+      - /srv/docker/appdata/influxdb2/data:/var/lib/influxdb2
+      - /srv/docker/appdata/influxdb2/config:/etc/influxdb2
     ports:
       - 8086:8086
     restart: unless-stopped
