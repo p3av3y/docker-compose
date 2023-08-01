@@ -2,11 +2,9 @@ version: '3.6'
 
 services:
   teleport:
-    # gravitational/teleport · Quay
-    # https://quay.io/repository/gravitational/teleport?tab=tags&tag=latest
-    # image: quay.io/gravitational/teleport
+    container_name: teleport
     hostname: teleport.peav.us
-    image: public.ecr.aws/gravitational/teleport:10
+    image: public.ecr.aws/gravitational/teleport:12
     ports:
       - "3022:3022"
       - "3023:3023"
@@ -19,11 +17,9 @@ services:
       - "3080:3080"
     restart: unless-stopped
     volumes:
-      - /nebula/docker/appdata/teleport/config:/etc/teleport
-      - /nebula/docker/appdata/teleport/data:/var/lib/teleport
-      - /nebula/docker/share/certificates/npm/live/:/etc/letsencrypt/live/
-      - /nebula/docker/share/certificates/npm/archive/:/etc/letsencrypt/archive/
-    deploy:
-      replicas: 1
-      placement:
-        constraints: [node.labels.nodetype == tiny]
+      - /srv/docker/appdata/teleport/config:/etc/teleport
+      - /srv/docker/appdata/teleport/data:/var/lib/teleport
+#      - /nebula/docker/appdata/teleport/config:/etc/teleport
+#      - /nebula/docker/appdata/teleport/data:/var/lib/teleport
+#      - /nebula/docker/share/certificates/npm/live/:/etc/letsencrypt/live/
+#      - /nebula/docker/share/certificates/npm/archive/:/etc/letsencrypt/archive/
