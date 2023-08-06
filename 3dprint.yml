@@ -7,5 +7,5 @@ services:
     ports:
       - 8819:80
     volumes:
-      - /srv/docker/apps/mainsail/config.json:/usr/share/nginx/html/config.josn
+      - /srv/docker/appdata/mainsail/config.json:/usr/share/nginx/html/config.josn
     restart: unless-stopped
