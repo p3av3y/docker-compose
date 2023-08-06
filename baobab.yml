@@ -1,0 +1,15 @@
+version: "3.6"
+
+services:
+  baobab:
+    image: jessedusty/baobab
+    container_name: baobab
+    environment:
+      - PUID=1980
+      - PGID=1980
+      - TZ=America/Chicago
+    volumes:
+      - /:/data
+    ports:
+      - 6080:6080
+    restart: unless-stopped
