@@ -1,17 +1,11 @@
-version: '3.2'
+version: '3.6'
 
 services:
   mainsail:
-    image: ghcr.io/mainsail-crew/mainsail 
+    image: ghcr.io/mainsail-crew/mainsail
+    container_name: mainsail
     ports:
-      - "8001:80"
+      - 8819:80
     volumes:
-      - '/srv/docker/apps/mainsail/config.json:/usr/share/nginx/html/config.josn'
+      - /srv/docker/apps/mainsail/config.json:/usr/share/nginx/html/config.josn
     restart: unless-stopped
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints:
-        - node.role == manager
-        - node.hostname == docker03
