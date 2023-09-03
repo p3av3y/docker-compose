@@ -6,8 +6,9 @@ services:
     container_name: watchtower
     environment:
       - TZ=America/Chicago
-       - WATCHTOWER_CLEANUP=true 
-       - WATCHTOWER_LABEL_ENABLE=true 
+      - WATCHTOWER_CLEANUP=true 
+      - WATCHTOWER_LABEL_ENABLE=true 
+      - WATCHTOWER_SCHEDULE=0 3 * * *
     restart: unless-stopped
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
