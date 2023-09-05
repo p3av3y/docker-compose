@@ -70,7 +70,7 @@ services:
       - /mnt/galaxy/media/music:/music
       - /mnt/galaxy/downloads:/downloads
     restart: unless-stopped
-        labels:
+    labels:
       - com.centurylinklabs.watchtower.enable=true
       
   nzbhydra2:
