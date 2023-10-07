@@ -4,15 +4,16 @@ services:
   influxdb2:
     image: influxdb:latest
     container_name: influxdb2
+    env_file: ./.env
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=$USERNAME
-      - DOCKER_INFLUXDB_INIT_PASSWORD=$PASSWORD
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD}
       - DOCKER_INFLUXDB_INIT_ORG=pv
       - DOCKER_INFLUXDB_INIT_BUCKET=pv-bucket
     volumes:
-      - /srv/docker/appdata/influxdb2/data:/var/lib/influxdb2
-      - /srv/docker/appdata/influxdb2/config:/etc/influxdb2
+      - ${APPDATA_PATH}/influxdb2/data:/var/lib/influxdb2
+      - ${APPDATA_PATH}/influxdb2/config:/etc/influxdb2
     ports:
       - 8086:8086
     restart: unless-stopped
