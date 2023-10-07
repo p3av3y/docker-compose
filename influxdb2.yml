@@ -4,7 +4,7 @@ services:
   influxdb2:
     image: influxdb:latest
     container_name: influxdb2
-    env_file: ./.env
+    env_file: /srv/docker/env/.env
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME}
