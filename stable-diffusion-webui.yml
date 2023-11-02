@@ -16,15 +16,8 @@ services:
       - /srv/docker/appdata/stable-diffusion-webui/models:/app/stable-diffusion-webui/models
       - /srv/docker/appdata/stable-diffusion-webui/localizations:/app/stable-diffusion-webui/localizations
       - /srv/docker/appdata/stable-diffusion-webui/outputs:/app/stable-diffusion-webui/outputs
-    cap_drop:
-      - ALL
-    cap_add:
-      - NET_BIND_SERVICE
     deploy:
       mode: global
-      placement:
-        constraints:
-          - "node.labels.iface != extern"
       restart_policy:
         condition: unless-stopped
       resources:
