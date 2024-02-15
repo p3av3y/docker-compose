@@ -88,4 +88,20 @@ services:
       - /mnt/galaxy/media/downloads/sabnzbd:/downloads
       #- /mnt/galaxy/downloads:/downloads
     labels:
-      - com.centurylinklabs.watchtower.enable=true    
+      - com.centurylinklabs.watchtower.enable=true  
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1980
+      - PGID=1980
+      - TZ=America/Chicago
+    volumes:
+      - /psrv/docker/appdata/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true     
+
