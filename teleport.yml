@@ -4,7 +4,7 @@ services:
   teleport:
     container_name: teleport
     hostname: teleport.peav.us
-    image: gravitational/teleport:14
+    image: public.ecr.aws/gravitational/teleport-distroless:15
     ports:
       #- "3022:3022"
       #- "3023:3023"
