@@ -6,15 +6,19 @@ services:
     hostname: teleport.peav.us
     image: public.ecr.aws/gravitational/teleport:13
     ports:
-      - "3022:3022"
+      #- "3022:3022"
+      #- "3023:3023"
+      #- "3024:3024"
+      #- "3025:3025"
+      #- "3026:3026"
+      #- "3027:3027"
+      #- "3028:3028"
+      #- "3036:3036"
+      #- "3080:3080"
+      - "3080:3080"
       - "3023:3023"
       - "3024:3024"
-      - "3025:3025"
-      - "3026:3026"
-      - "3027:3027"
-      - "3028:3028"
-      - "3036:3036"
-      - "3080:3080"
+      - "3025:3025"      
     restart: unless-stopped
     volumes:
       - /srv/docker/appdata/teleport/config:/etc/teleport
