@@ -4,7 +4,7 @@ services:
   teleport:
     container_name: teleport
     hostname: teleport.peav.us
-    image: teleport:latest
+    image: gravitational/teleport:14
     ports:
       #- "3022:3022"
       #- "3023:3023"
