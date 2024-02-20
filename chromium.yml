@@ -10,7 +10,7 @@ services:
       - PUID=1980
       - PGID=1980
       - TZ=America/Chicago
-      - CHROME_CLI=https://homepage.peav.us/
+      #- CHROME_CLI=https://homepage.peav.us/
     volumes:
       - /srv/docker/appdata/chromium:/config
     ports:
