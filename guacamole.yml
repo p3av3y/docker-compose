@@ -6,9 +6,9 @@ services:
     image: jwetzell/guacamole
     restart: unless-stopped
     ports:
-      8086:8080
+      - 8086:8080
     volumes:
-      /srv/docker/appdata/guacamole:/config
+      - /srv/docker/appdata/guacamole:/config
   
   
   
