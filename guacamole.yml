@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     ports:
       8086:8080
-    volume:
+    volumes:
       /srv/docker/appdata/guacamole:/config
   
   
