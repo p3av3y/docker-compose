@@ -1,0 +1,20 @@
+version: '3.6'
+
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    hostname: syncthing #optional
+    environment:
+      - PUID=1980
+      - PGID=1980
+      - TZ=America/Chicago
+    volumes:
+      - /srv/docker/appdata/syncthing:/config
+      - /srv/docker/appdata/syncthing_data:/data
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
