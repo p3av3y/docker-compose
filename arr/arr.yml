@@ -13,7 +13,8 @@ services:
     restart: unless-stopped
     volumes:
       - /srv/docker/appdata/sabnzbd:/config
-      - cifs_sabznbd/sabnzbd:/downloads
+      - tns_nfs_downloads/sabnzbd:/downloads
+      - tns_nfs_downloads/sabnzbd/incomplete:/downloads
       #- /mnt/galaxy/media/downloads/sabnzbd:/downloads
       #- /mnt/galaxy/media/downloads/sabnzbd/incomplete:/incomplete-downloads
       #- /mnt/galaxy/downloads:/downloads
@@ -123,10 +124,10 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true     
 
-  volumes: 
-    cifs_sabznbd: 
-      driver: local 
-      driver_opts: 
-        type: cifs
-        o: username=pv,password=June10th2006,file_mode=0777,dir_mode=0777,iocharset=utf8
-        device: //192.168.1.170/downloads
+  volumes:
+    tns_nfs_downloads:
+      driver: local
+      driver_opts:
+        type: nfs
+        o: addr=192.168.1.170
+        device: :/mnt/galaxy/downloads
