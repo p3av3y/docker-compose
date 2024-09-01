@@ -13,8 +13,9 @@ services:
     restart: unless-stopped
     volumes:
       - /srv/docker/appdata/sabnzbd:/config
-      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
-      - /mnt/galaxy/media/downloads/sabnzbd/incomplete:/incomplete-downloads
+      - cifs_sabznbd/sabnzbd:/downloads
+      #- /mnt/galaxy/media/downloads/sabnzbd:/downloads
+      #- /mnt/galaxy/media/downloads/sabnzbd/incomplete:/incomplete-downloads
       #- /mnt/galaxy/downloads:/downloads
       #- /mnt/galaxy/downloads/incomplete:/incomplete-downloads
     labels:
@@ -122,3 +123,10 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true     
 
+  volumes: 
+    cifs_sabznbd: 
+      driver: local 
+      driver_opts: 
+        type: cifs
+        o: username=pv,password=June10th2006,file_mode=0777,dir_mode=0777,iocharset=utf8
+        device: //192.168.1.170/downloads
