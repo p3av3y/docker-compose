@@ -18,7 +18,7 @@ services:
       #- /mnt/galaxy/media/downloads/sabnzbd:/downloads
       #- /mnt/galaxy/media/downloads/sabnzbd/incomplete:/incomplete-downloads
       - /mnt/galaxy/downloads/sabnzbd:/downloads
-      - /mnt/galaxy/downloads//sabnzbd/incomplete:/incomplete-downloads
+      - /mnt/galaxy/downloads/sabnzbd/incomplete:/incomplete-downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true
       
