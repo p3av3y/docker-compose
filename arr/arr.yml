@@ -17,8 +17,10 @@ services:
       #- tns_nfs_downloads/sabnzbd/incomplete:/downloads
       #- /mnt/galaxy/media/downloads/sabnzbd:/downloads
       #- /mnt/galaxy/media/downloads/sabnzbd/incomplete:/incomplete-downloads
-      - /mnt/galaxy/downloads/sabnzbd:/downloads
-      - /mnt/galaxy/downloads/sabnzbd/incomplete:/incomplete-downloads
+      ###- /mnt/galaxy/downloads/sabnzbd:/downloads
+      ###- /mnt/galaxy/downloads/sabnzbd/incomplete:/incomplete-downloads
+      - tns_smb_downloads/sabnzbd:/downloads
+      - tns_smb_downloads/sabnzbd/incomplete:/incomplete-downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true
       
@@ -131,3 +133,10 @@ services:
         type: nfs
         o: addr=192.168.1.170
         device: :/mnt/galaxy/downloads
+    tns_smb_downloads:
+      driver: local
+      driver_opts:
+        type: cifs
+        device: "//192.168.1.170/downloads"
+        o: "username=pv,password=June10th2006,uid=1980,gid=1980"
+
