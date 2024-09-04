@@ -13,14 +13,14 @@ services:
     restart: unless-stopped
     volumes:
       - /srv/docker/appdata/sabnzbd:/config
-      #- tns_nfs_downloads/sabnzbd:/downloads
-      #- tns_nfs_downloads/sabnzbd/incomplete:/downloads
+      - tns_nfs_downloads/sabnzbd:/downloads
+      - tns_nfs_downloads/sabnzbd/incomplete:/downloads
       #- /mnt/galaxy/media/downloads/sabnzbd:/downloads
       #- /mnt/galaxy/media/downloads/sabnzbd/incomplete:/incomplete-downloads
       ###- /mnt/galaxy/downloads/sabnzbd:/downloads
       ###- /mnt/galaxy/downloads/sabnzbd/incomplete:/incomplete-downloads
-      - tns_smb_downloads/sabnzbd:/downloads
-      - tns_smb_downloads/sabnzbd/incomplete:/incomplete-downloads
+      #- tns_smb_downloads/sabnzbd:/downloads
+      #- tns_smb_downloads/sabnzbd/incomplete:/incomplete-downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true
       
