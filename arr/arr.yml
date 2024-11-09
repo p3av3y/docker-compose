@@ -7,16 +7,16 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - TZ=America/Chicago
-      - PUID=1980
-      - GUID=1980
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
     restart: unless-stopped
     volumes:
-      - /srv/docker/appdata/sabnzbd:/config
+      - ${DOCKER_APP_BASE_PATH}/sabnzbd:/config
       #- tns_nfs_downloads/sabnzbd:/downloads
       #- tns_nfs_downloads/sabnzbd/incomplete:/downloads
-      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
-      - /mnt/galaxy/media/downloads/sabnzbd/incomplete:/incomplete-downloads
+      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
+      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd/incomplete:/incomplete-downloads
       ###- /mnt/galaxy/downloads/sabnzbd:/downloads
       ###- /mnt/galaxy/downloads/sabnzbd/incomplete:/incomplete-downloads
       ###- tns_smb_downloads/sabnzbd:/downloads
@@ -30,15 +30,14 @@ services:
     ports:
       - "7878:7878"
     environment:
-      - TZ=America/Chicago
-      - PUID=1980
-      - GUID=1980
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
     restart: unless-stopped
     volumes:
-      - /srv/docker/appdata/radarr:/config
-      - /mnt/galaxy/media/movies:/movies
-      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
-      #- /mnt/galaxy/downloads:/downloads
+      - ${DOCKER_APP_BASE_PATH}/radarr:/config
+      - ${NAS_GALAXY_BASE_PATH}/movies:/movies
+      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
@@ -46,13 +45,13 @@ services:
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
     environment:
-      - PUID=1980
-      - PGID=1980
-      - TZ=America/Chicago
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
     volumes:
-      - /srv/docker/appdata/readarr:/config
-      - /mnt/galaxy/media/books:/books
-      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
+      - ${DOCKER_APP_BASE_PATH}/readarr:/config
+      - ${NAS_GALAXY_BASE_PATH}/books:/books
+      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
     ports:
       - 8787:8787
     restart: unless-stopped  
@@ -65,15 +64,14 @@ services:
     ports:
       - "8989:8989"
     environment:
-      - TZ=America/Chicago
-      - PUID=1980
-      - GUID=1980
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
     restart: unless-stopped
     volumes:
-      - /srv/docker/appdata/sonarr:/config
-      - /mnt/galaxy/media/tv:/tv
-      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
-      #- /mnt/galaxy/downloads:/downloads
+      - ${DOCKER_APP_BASE_PATH}/sonarr:/config
+      - ${NAS_GALAXY_BASE_PATH}/tv:/tv
+      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true
       
@@ -83,13 +81,13 @@ services:
     ports:
       - 8686:8686
     environment:
-      - PUID=1980
-      - PGID=1980
-      - TZ=America/Chicago
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
     volumes:
-      - /srv/docker/appdata/lidarr:/config
-      - /mnt/galaxy/media/music:/music
-      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
+      - ${DOCKER_APP_BASE_PATH}/lidarr:/config
+      - ${NAS_GALAXY_BASE_PATH}/music:/music
+      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -100,14 +98,13 @@ services:
     ports:
       - "5076:5076"
     environment:
-      - TZ=America/Chicago
-      - PUID=1980
-      - GUID=1980
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
     restart: unless-stopped
     volumes:
-      - /srv/docker/appdata/nzbhydra2:/config
-      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
-      #- /mnt/galaxy/downloads:/downloads
+      - ${DOCKER_APP_BASE_PATH}/nzbhydra2:/config
+      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true  
 
@@ -115,27 +112,13 @@ services:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     environment:
-      - PUID=1980
-      - PGID=1980
-      - TZ=America/Chicago
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
     volumes:
-      - /psrv/docker/appdata/prowlarr:/config
+      - ${DOCKER_APP_BASE_PATH}/prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true     
-
-  volumes:
-    tns_nfs_downloads:
-      driver: local
-      driver_opts:
-        type: nfs
-        o: addr=192.168.1.170
-        device: :/mnt/galaxy/downloads
-    tns_smb_downloads:
-      driver: local
-      driver_opts:
-        type: cifs
-        device: "//192.168.1.170/downloads"
-        o: "username=pv,password=June10th2006,uid=1980,gid=1980"
