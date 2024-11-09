@@ -5,7 +5,7 @@ services:
     container_name: uptime-kuma
     restart: unless-stopped
     ports:
-      - "3010:3001"
+      - "3001:3001"
     volumes:
       - /mnt/nebula/docker/appdata/uptime-kuma:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
