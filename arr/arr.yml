@@ -1,0 +1,141 @@
+version: '3.6'
+
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    ports:
+      - "8080:8080"
+    environment:
+      - TZ=America/Chicago
+      - PUID=1980
+      - GUID=1980
+    restart: unless-stopped
+    volumes:
+      - /srv/docker/appdata/sabnzbd:/config
+      #- tns_nfs_downloads/sabnzbd:/downloads
+      #- tns_nfs_downloads/sabnzbd/incomplete:/downloads
+      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
+      - /mnt/galaxy/media/downloads/sabnzbd/incomplete:/incomplete-downloads
+      ###- /mnt/galaxy/downloads/sabnzbd:/downloads
+      ###- /mnt/galaxy/downloads/sabnzbd/incomplete:/incomplete-downloads
+      ###- tns_smb_downloads/sabnzbd:/downloads
+      ###- tns_smb_downloads/sabnzbd/incomplete:/incomplete-downloads
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    ports:
+      - "7878:7878"
+    environment:
+      - TZ=America/Chicago
+      - PUID=1980
+      - GUID=1980
+    restart: unless-stopped
+    volumes:
+      - /srv/docker/appdata/radarr:/config
+      - /mnt/galaxy/media/movies:/movies
+      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
+      #- /mnt/galaxy/downloads:/downloads
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=1980
+      - PGID=1980
+      - TZ=America/Chicago
+    volumes:
+      - /srv/docker/appdata/readarr:/config
+      - /mnt/galaxy/media/books:/books
+      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
+    ports:
+      - 8787:8787
+    restart: unless-stopped  
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    ports:
+      - "8989:8989"
+    environment:
+      - TZ=America/Chicago
+      - PUID=1980
+      - GUID=1980
+    restart: unless-stopped
+    volumes:
+      - /srv/docker/appdata/sonarr:/config
+      - /mnt/galaxy/media/tv:/tv
+      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
+      #- /mnt/galaxy/downloads:/downloads
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    ports:
+      - 8686:8686
+    environment:
+      - PUID=1980
+      - PGID=1980
+      - TZ=America/Chicago
+    volumes:
+      - /srv/docker/appdata/lidarr:/config
+      - /mnt/galaxy/media/music:/music
+      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      
+  nzbhydra2:
+    image: lscr.io/linuxserver/nzbhydra2:latest
+    container_name: nzbhydra2
+    ports:
+      - "5076:5076"
+    environment:
+      - TZ=America/Chicago
+      - PUID=1980
+      - GUID=1980
+    restart: unless-stopped
+    volumes:
+      - /srv/docker/appdata/nzbhydra2:/config
+      - /mnt/galaxy/media/downloads/sabnzbd:/downloads
+      #- /mnt/galaxy/downloads:/downloads
+    labels:
+      - com.centurylinklabs.watchtower.enable=true  
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1980
+      - PGID=1980
+      - TZ=America/Chicago
+    volumes:
+      - /psrv/docker/appdata/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true     
+
+  volumes:
+    tns_nfs_downloads:
+      driver: local
+      driver_opts:
+        type: nfs
+        o: addr=192.168.1.170
+        device: :/mnt/galaxy/downloads
+    tns_smb_downloads:
+      driver: local
+      driver_opts:
+        type: cifs
+        device: "//192.168.1.170/downloads"
+        o: "username=pv,password=June10th2006,uid=1980,gid=1980"
