@@ -6,7 +6,7 @@ services:
     container_name: filebrowser
     restart: unless-stopped
     env_file: 
-      - /env-files/common.env  
+      #- /env-files/common.env  
       - /env-files/test.env
     #environment:
       #- PUID=$(id -u)
