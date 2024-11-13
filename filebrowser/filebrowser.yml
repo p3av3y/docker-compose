@@ -14,7 +14,7 @@ services:
     ports:
       - 8084:80
     volumes:
-      - /mnt:/mnt
+      - /mnt:/truenas
       #- /mnt/nebula/docker:/srv/mnt/nebula/docker
       #- /mnt/galaxy/media:/srv/mnt/galaxy/media
       #- /srv/docker:/srv/local/docker
