@@ -1,0 +1,21 @@
+services:
+  filebrowser:
+    container_name: filebrowser
+    image: filebrowser/filebrowser:latest
+    restart: unless-stopped
+    environment:
+      #- PUID=1980
+      #- PGID=1980
+      - TZ=${TZ}
+    ports:
+      - 8084:80
+    volumes:
+      - /mnt:/mnt
+      #- /mnt/nebula/docker:/srv/mnt/nebula/docker
+      #- /mnt/galaxy/media:/srv/mnt/galaxy/media
+      #- /srv/docker:/srv/local/docker
+      #- /nebu:/srv/nebula
+      - ${DOCKER_APP_BASE_PATH}/filebrowser/database.db:/database.db
+      - ${DOCKER_APP_BASE_PATH}/filebrowser/.filebrowser.json:/.filebrowser.json
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
