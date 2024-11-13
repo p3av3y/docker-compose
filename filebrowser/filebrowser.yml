@@ -8,10 +8,10 @@ services:
     env_file: 
       - /env-files/common.env  
       - /env-files/test.env
-    environment:
+    #environment:
       #- PUID=$(id -u)
       #- PGID=$(id -g)
-      - TZ=${TZ}
+      #- TZ=${TZ}
     volumes:
       - /mnt:/srv #Change to match your directory
       - ${DOCKER_APP_BASE_PATH}/filebrowser/filebrowser.db:/database/filebrowser.db
