@@ -1,3 +1,5 @@
+# FileBrowser
+
 services:
   filebrowser:
     container_name: filebrowser
@@ -6,7 +8,8 @@ services:
     environment:
       #- PUID=1980
       #- PGID=1980
-      #- TZ=${TZ}
+      - TZ=${TZ}
+    env_file: env-files/common.env
     ports:
       - 8084:80
     volumes:
