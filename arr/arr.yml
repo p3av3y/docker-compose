@@ -15,8 +15,8 @@ services:
       - ${DOCKER_APP_BASE_PATH}/sabnzbd:/config
       #- tns_nfs_downloads/sabnzbd:/downloads
       #- tns_nfs_downloads/sabnzbd/incomplete:/downloads
-      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
-      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd/incomplete:/incomplete-downloads
+      - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd:/downloads
+      - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd/incomplete:/incomplete-downloads
       ###- /mnt/galaxy/downloads/sabnzbd:/downloads
       ###- /mnt/galaxy/downloads/sabnzbd/incomplete:/incomplete-downloads
       ###- tns_smb_downloads/sabnzbd:/downloads
@@ -36,8 +36,8 @@ services:
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/radarr:/config
-      - ${NAS_GALAXY_BASE_PATH}/movies:/movies
-      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
+      - ${NAS_GALAXY_BASE_PATH}/media/movies:/movies
+      - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd:/downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
@@ -50,8 +50,8 @@ services:
       - GUID=${PGID}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/readarr:/config
-      - ${NAS_GALAXY_BASE_PATH}/books:/books
-      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
+      - ${NAS_GALAXY_BASE_PATH}/media/books:/books
+      - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd:/downloads
     ports:
       - 8787:8787
     restart: unless-stopped  
@@ -70,8 +70,8 @@ services:
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/sonarr:/config
-      - ${NAS_GALAXY_BASE_PATH}/tv:/tv
-      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
+      - ${NAS_GALAXY_BASE_PATH}/media/tv:/tv
+      - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd:/downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true
       
@@ -86,8 +86,8 @@ services:
       - GUID=${PGID}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/lidarr:/config
-      - ${NAS_GALAXY_BASE_PATH}/music:/music
-      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
+      - ${NAS_GALAXY_BASE_PATH}/media/music:/music
+      - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd:/downloads
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -104,7 +104,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/nzbhydra2:/config
-      - ${NAS_GALAXY_BASE_PATH}/downloads/sabnzbd:/downloads
+      - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd:/downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true  
 
