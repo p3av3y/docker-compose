@@ -13,14 +13,8 @@ services:
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/sabnzbd:/config
-      #- tns_nfs_downloads/sabnzbd:/downloads
-      #- tns_nfs_downloads/sabnzbd/incomplete:/downloads
       - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd:/downloads
       - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd/incomplete:/incomplete-downloads
-      ###- /mnt/galaxy/downloads/sabnzbd:/downloads
-      ###- /mnt/galaxy/downloads/sabnzbd/incomplete:/incomplete-downloads
-      ###- tns_smb_downloads/sabnzbd:/downloads
-      ###- tns_smb_downloads/sabnzbd/incomplete:/incomplete-downloads
     labels:
       - com.centurylinklabs.watchtower.enable=true
       
