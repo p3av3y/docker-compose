@@ -12,6 +12,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${DOCKER_APP_BASE_PATH}/checkmk:/omd/sites
-      ports:
+    ports:
       - 8050:5000
       - 6557:6557
