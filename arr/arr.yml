@@ -96,24 +96,6 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
       
-  nzbhydra2:
-    image: lscr.io/linuxserver/nzbhydra2:latest
-    container_name: nzbhydra2
-    networks:
-      - pvnet
-    ports:
-      - "5076:5076"
-    environment:
-      - TZ=${TZ}
-      - PUID=${PUID}
-      - GUID=${PGID}
-    restart: unless-stopped
-    volumes:
-      - ${DOCKER_APP_BASE_PATH}/nzbhydra2:/config
-      - ${NAS_GALAXY_BASE_PATH}/media/downloads/sabnzbd:/downloads
-    labels:
-      - com.centurylinklabs.watchtower.enable=true  
-
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
@@ -129,8 +111,4 @@ services:
       - 9696:9696
     restart: unless-stopped
     labels:
-      - com.centurylinklabs.watchtower.enable=true     
-
-networks:
-  pvnet:
-    driver: bridge
+      - com.centurylinklabs.watchtower.enable=true
