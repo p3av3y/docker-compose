@@ -1,0 +1,17 @@
+# CheckMK
+
+services:
+  controll:
+    image: checkmk/check-mk-raw:latest
+    container_name: checkmk
+    restart: unless-stopped
+    #tmpfs:
+    # - /opt/omd/sites/cmk/tmp:uid=1000,gid=1000
+    #ulimits:
+    #  nofile: 1024
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOCKER_APP_BASE_PATH}/checkmk:/omd/sites
+      ports:
+      - 8050:5000
+      - 6557:6557
