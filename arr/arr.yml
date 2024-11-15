@@ -131,6 +131,6 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true  
 
-   networks:
-     pvnet:
-       external: true    
+networks:
+   pvnet:
+     external: true
