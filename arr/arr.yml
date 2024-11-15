@@ -12,6 +12,8 @@ services:
       - TZ=${TZ}
       - PUID=${PUID}
       - GUID=${PGID}
+      - DOCKER_APP_BASE_PATH=${DOCKER_APP_BASE_PATH}
+      - NAS_GALAXY_BASE_PATH=${NAS_GALAXY_BASE_PATH}
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/sabnzbd:/config
