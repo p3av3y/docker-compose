@@ -4,6 +4,8 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
+    networks:
+      - pvnet
     ports:
       - "8080:8080"
     environment:
@@ -21,6 +23,8 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
+    networks:
+      - pvnet
     ports:
       - "7878:7878"
     environment:
@@ -38,6 +42,8 @@ services:
   readarr:
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
+    networks:
+      - pvnet
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
@@ -55,6 +61,8 @@ services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
+    networks:
+      - pvnet
     ports:
       - "8989:8989"
     environment:
@@ -72,6 +80,8 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
     container_name: lidarr
+    networks:
+      - pvnet
     ports:
       - 8686:8686
     environment:
@@ -89,6 +99,8 @@ services:
   nzbhydra2:
     image: lscr.io/linuxserver/nzbhydra2:latest
     container_name: nzbhydra2
+    networks:
+      - pvnet
     ports:
       - "5076:5076"
     environment:
@@ -105,6 +117,8 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
+    networks:
+      - pvnet
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
