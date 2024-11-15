@@ -4,14 +4,14 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
+    env_file:
+      - /env-files/common.env
     ports:
       - "8080:8080"
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
       - GUID=${PGID}
-      - NAS_GALAXY_BASE_PATH=${NAS_GALAXY_BASE_PATH}
-      - DOCKER_APP_BASE_PATH=${DOCKER_APP_BASE_PATH}
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/sabnzbd:/config
