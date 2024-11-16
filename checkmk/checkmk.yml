@@ -15,3 +15,5 @@ services:
     ports:
       - 8050:5000
       - 6557:6557
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
