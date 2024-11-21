@@ -8,8 +8,8 @@ services:
     env_file: 
       - /env-files/cloudflared.env 
     command: tunnel --no-autoupdate run
-    environment:
-      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    #environment:
+    #  - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     volumes:
       - /srv/docker/appdata/cloudflared:/etc/cloudflared  
     labels:
