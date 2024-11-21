@@ -1,0 +1,16 @@
+# CheckMK
+
+services:
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    env_file: 
+      - /env-files/cloudflared.env 
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    volumes:
+      - /srv/docker/appdata/cloudflared:/etc/cloudflared  
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
