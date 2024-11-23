@@ -2,8 +2,8 @@
     image: lscr.io/linuxserver/orcaslicer:latest
     container_name: orcaslicer
     restart: unless-stopped
-    security_opt:
-      - seccomp:unconfined #optional
+    #security_opt:
+    #  - seccomp:unconfined #optional
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
