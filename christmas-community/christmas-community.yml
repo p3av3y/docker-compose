@@ -23,5 +23,6 @@ services:
       # length. If issues are encountered, set the node.js limit to a higher
       # number than 8192
       #NODE_OPTIONS: "--max-http-header-size=32768"
+      LISTS_PUBLIC: 'true'
     labels:
       - com.centurylinklabs.watchtower.enable=true       
