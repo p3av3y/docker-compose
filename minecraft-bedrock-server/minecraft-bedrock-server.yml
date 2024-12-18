@@ -1,0 +1,38 @@
+# Minecraft Bedrock Server
+
+services:
+  minecraft:
+    image: itzg/minecraft-bedrock-server:latest
+    container_name: "minecraft-bedrock-server"
+    restart: unless-stopped
+    ports:
+      - "19132:19132/udp"
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/minecraft-bedrock-server:/data
+    environment:
+      EULA: "TRUE"
+      SERVER_NAME: "PV Minecraft Server"
+      SERVER_PORT: "19132"
+      GAMEMODE: "creative"
+      DIFFICULTY: "peaceful"
+      LEVEL_TYPE: "DEFAULT"
+      ALLOW_CHEATS: "true"
+      MAX_PLAYERS: "10"
+      ONLINE_MODE: "true"
+      #WHITE_LIST: ""
+      VIEW_DISTANCE: "12"
+      TICK_DISTANCE: "12"
+      PLAYER_IDLE_TIMEOUT: "0"
+      MAX_THREADS: "8"
+      LEVEL_NAME: "level"
+      #LEVEL_SEED: ""
+      DEFAULT_PLAYER_PERMISSION_LEVEL: "member"
+      TEXTUREPACK_REQUIRED: "false"
+      SERVER_AUTHORITATIVE_MOVEMENT: "true"
+      PLAYER_MOVEMENT_SCORE_THRESHOLD: "20"
+      PLAYER_MOVEMENT_DISTANCE_THRESHOLD: "0.3"
+      PLAYER_MOVEMENT_DURATION_THRESHOLD_IN_MS: "500"
+      ENABLE_WHITELIST: "TRUE"
+      ENFORCE_WHITELIST: "TRUE"
+    labels:
+      - com.centurylinklabs.watchtower.enable=true    
