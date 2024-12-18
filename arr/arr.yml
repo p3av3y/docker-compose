@@ -6,8 +6,10 @@ services:
     container_name: sabnzbd
     networks:
       - pvnet
-    ports:
-      - "8080:8080"
+    network_mode: "container:gluetun"
+    # removed to use gluetun
+    #ports:
+    #  - "8080:8080"
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
