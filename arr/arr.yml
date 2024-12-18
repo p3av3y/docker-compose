@@ -25,10 +25,12 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
-    networks:
-      - pvnet
-    ports:
-      - "7878:7878"
+    #networks:
+    #  - pvnet
+    network_mode: "container:gluetun"
+    # remove to use gluetun
+    #ports:
+    #  - "7878:7878"
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
