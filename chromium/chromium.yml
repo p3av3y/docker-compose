@@ -1,0 +1,24 @@
+# Chromium
+
+services:
+  chromium:
+    image: lscr.io/linuxserver/chromium:latest
+    container_name: chromium
+    networks:
+      - pvnet    
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=${PUID}
+      - GUID=${PGID}
+      - TZ=${TZ}
+      #- CHROME_CLI=https://homepage.peav.us/
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/chromium:/config
+    ports:
+      - 3000:3000
+      - 3001:3001
+    shm_size: "1gb"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
