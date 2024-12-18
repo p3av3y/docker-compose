@@ -4,12 +4,12 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
-    #networks:
-    #  - pvnet
-    network_mode: "container:gluetun"
+    networks:
+      - pvnet
+    #network_mode: "container:gluetun"
     # removed to use gluetun
-    #ports:
-    #  - "8080:8080"
+    ports:
+      - "8080:8080"
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
@@ -25,12 +25,12 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
-    #networks:
-    #  - pvnet
-    network_mode: "container:gluetun"
+    networks:
+      - pvnet
+    #network_mode: "container:gluetun"
     # remove to use gluetun
-    #ports:
-    #  - "7878:7878"
+    ports:
+      - "7878:7878"
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
