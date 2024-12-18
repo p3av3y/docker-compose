@@ -32,3 +32,5 @@ services:
       # Server list updater
       # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/servers.md#update-the-vpn-servers-list
       #- UPDATER_PERIOD=
+    labels:
+      - com.centurylinklabs.watchtower.enable=true      
