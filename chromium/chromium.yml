@@ -17,8 +17,8 @@ services:
     volumes:
       - ${DOCKER_APP_BASE_PATH}/chromium:/config
     ports:
-      - 3000:3000
-      - 3001:3001
+      - 3100:3000
+      - 3101:3001
     shm_size: "1gb"
     labels:
       - com.centurylinklabs.watchtower.enable=true
