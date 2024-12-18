@@ -4,8 +4,8 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
-    networks:
-      - pvnet
+    #networks:
+    #  - pvnet
     network_mode: "container:gluetun"
     # removed to use gluetun
     #ports:
