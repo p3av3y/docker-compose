@@ -1,0 +1,36 @@
+# SHLink
+
+services:
+  shlink:
+    image: shlinkio/shlink:stable
+    container_name: shlink
+    restart: unless-stopped
+    env_file: 
+      - /env-files/shlink.env
+    networks:
+      - pvnet
+    environment:
+      - DEFAULT_DOMAIN=peav.io
+      - IS_HTTPS_ENABLED=true
+      - TZ=${TZ}
+    ports:
+      - 1592:8080
+    labels:
+      - com.centurylinklabs.watchtower.enable=true   
+      
+  shlink-web-client:
+    image: shlinkio/shlink-web-client:stable
+    container_name: shlink-web-client
+    restart: unless-stopped
+    networks:
+      - pvnet 
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/shlink-web-client/servers.json:/usr/share/nginx/html/servers.json
+    ports:
+      - 1593:8080
+    labels:
+      - com.centurylinklabs.watchtower.enable=true   
+
+networks:
+   pvnet:
+     external: true   

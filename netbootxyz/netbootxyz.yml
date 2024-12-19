@@ -21,6 +21,8 @@ services:
       - 3030:3000
       - 69:69/udp
       - 8030:80 #optional
+    labels:
+      - com.centurylinklabs.watchtower.enable=true   
 
 networks:
    pvnet:
