@@ -1,0 +1,27 @@
+# netbootxyz
+
+services:
+  netbootxyz:
+    image: lscr.io/linuxserver/netbootxyz:latest
+    container_name: netbootxyz
+    restart: unless-stopped
+    networks:
+      - pvnet
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
+      #- MENU_VERSION=1.9.9 #optional
+      #- PORT_RANGE=30000:30010 #optional
+      #- SUBFOLDER=/ #optional
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/netboot.xyz/config:/config
+      #- /path/to/assets:/assets #optional
+    ports:
+      - 3030:3000
+      - 69:69/udp
+      - 8030:80 #optional
+
+networks:
+   pvnet:
+     external: true      
