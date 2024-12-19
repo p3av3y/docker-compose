@@ -1,0 +1,24 @@
+# adguardhome-sync
+
+services:
+  adguardhome-sync:
+    image: lscr.io/linuxserver/adguardhome-sync:latest
+    container_name: adguardhome-sync
+    restart: unless-stopped
+    networks:
+      - pvnet
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
+      - CONFIGFILE=/config/adguardhome-sync.yaml #optional
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/adguardhome-sync:/config
+    ports:
+      - 8383:8080
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+networks:
+   pvnet:
+     external: true  
