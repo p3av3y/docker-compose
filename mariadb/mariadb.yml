@@ -1,0 +1,44 @@
+# MariaDB
+
+services:
+  mariadb:
+    image: lscr.io/linuxserver/mariadb:latest
+    container_name: mariadb
+    restart: unless-stopped
+    env_file: 
+      - /env-files/mariadb.env
+    networks:
+      - pvnet
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/mariadb/config:/config
+    ports:
+      - 3306:3306
+    labels:
+      - com.centurylinklabs.watchtower.enable=true   
+    
+  phpmyadmin:
+    image: lscr.io/linuxserver/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    networks:
+      - pvnet
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
+      - PMA_ARBITRARY=1 #optional
+      #- PMA_ABSOLUTE_URI=https://phpmyadmin.example.com #optional
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/phpmyadmin/config:/config
+    ports:
+      - 8081:80
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+networks:
+   pvnet:
+     external: true    
