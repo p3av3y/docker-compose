@@ -1,7 +1,7 @@
 # Syncthing
 
 services:
-  obsidian:
+  syncthing:
     image: lscr.io/linuxserver/syncthing:latest
     container_name: syncthing
     networks:
