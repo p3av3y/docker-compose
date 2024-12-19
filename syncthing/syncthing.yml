@@ -4,6 +4,7 @@ services:
   syncthing:
     image: lscr.io/linuxserver/syncthing:latest
     container_name: syncthing
+    hostname: syncthing
     networks:
       - pvnet
     restart: unless-stopped
