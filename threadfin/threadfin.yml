@@ -1,0 +1,24 @@
+# Threadfin
+
+services:
+  threadfin:
+    image: fyb3roptik/threadfin:latest
+    container_name: threadfin
+    networks:
+      - pvnet    
+    restart: unless-stopped
+    ports:
+      - 34400:34400
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - GUID=${PGID}
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/threadfin/conf:/home/threadfin/conf
+      - ${DOCKER_APP_BASE_PATH}/threadfin/temp:/tmp/threadfin:rw
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+networks:
+   pvnet:
+     external: true   
