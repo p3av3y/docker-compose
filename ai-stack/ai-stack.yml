@@ -58,6 +58,17 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
+  stable-diffusion-download:
+    build: /srv/docker/stable-diffusion-webui-docker/services/download/
+    image: comfy-download
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /srv/docker/stable-diffusion-webui-docker/data:/data
+
 networks:
   ai-stack:
     external: true
