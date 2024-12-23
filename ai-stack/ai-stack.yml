@@ -57,8 +57,9 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
-  stable-diffusion-download:
+  stable-diffusion-automatic1111-download:
     image: stable-diffusion-download:latest
+    container_name: stable-diffusion-automatic1111-download
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
@@ -67,7 +68,20 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /srv/docker/stable-diffusion-automatic1111/data:/data
     labels:
-      - com.centurylinklabs.watchtower.enable=true      
+      - com.centurylinklabs.watchtower.enable=true
+
+  stable-diffusion-comfy-download:
+    image: stable-diffusion-download:latest
+    container_name: stable-diffusion-comfy-download
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /srv/docker/stable-diffusion-comfy/data:/data
+    labels:
+      - com.centurylinklabs.watchtower.enable=true    
 
   stable-diffusion-automatic1111:
     image: stable-diffusion-automatic1111:latest
@@ -97,6 +111,35 @@ services:
       - "7860:7860" # Add this line to expose the port
     labels:
       - com.centurylinklabs.watchtower.enable=true      
+
+  stable-diffusion-comfy:
+    image: stable-diffusion-comfy:latest
+    container_name: stable-diffusion-comfy
+    restart: unless-stopped
+    networks:
+      - ai-stack
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /srv/docker/stable-diffusion-comfy/data:/data
+      - /srv/docker/stable-diffusion-comfy/output:/output
+    stop_signal: SIGKILL
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [compute, utility]
+    ports:
+      - "7861:7860" # Add this line to expose the port
+    labels:
+      - com.centurylinklabs.watchtower.enable=true          
 
 networks:
   ai-stack:
