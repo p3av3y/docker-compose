@@ -121,7 +121,7 @@ services:
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
-      - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
+      #- CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
