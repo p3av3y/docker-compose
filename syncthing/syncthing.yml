@@ -10,8 +10,8 @@ services:
     restart: unless-stopped
     environment:
       - TZ=${TZ}
-      - PUID=${PUID}
-      - GUID=${PGID}
+      #- PUID=${PUID}
+      #- GUID=${PGID}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/syncthing:/config
       - ${NAS_NEBULA_BASE_PATH}:/nebula
