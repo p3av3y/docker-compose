@@ -7,9 +7,6 @@ services:
     networks:
       - pvnet    
     restart: unless-stopped
-    env_file: 
-      #- /env-files/common.env  
-      #- /env-files/test.env
     #environment:
       #- PUID=$(id -u)
       #- PGID=$(id -g)
