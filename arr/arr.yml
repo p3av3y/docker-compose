@@ -13,7 +13,7 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
-      - GUID=${PGID}
+      - PGID=${PGID}
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/sabnzbd:/config
@@ -34,7 +34,7 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
-      - GUID=${PGID}
+      - PGID=${PGID}
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/radarr:/config
@@ -51,7 +51,7 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
-      - GUID=${PGID}
+      - PGID=${PGID}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/readarr:/config
       - ${NAS_GALAXY_BASE_PATH}/media/books:/books
@@ -72,7 +72,7 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
-      - GUID=${PGID}
+      - PGID=${PGID}
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/sonarr:/config
@@ -91,7 +91,7 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
-      - GUID=${PGID}
+      - PGID=${PGID}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/lidarr:/config
       - ${NAS_GALAXY_BASE_PATH}/media/music:/music
@@ -108,7 +108,7 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
-      - GUID=${PGID}
+      - PGID=${PGID}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/prowlarr:/config
     ports:
@@ -127,7 +127,7 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
-      - GUID=${PGID}
+      - PGID=${PGID}
     restart: unless-stopped
     volumes:
       - ${DOCKER_APP_BASE_PATH}/nzbhydra2:/config

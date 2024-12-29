@@ -12,7 +12,7 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
-      - GUID=${PGID}
+      - PGID=${PGID}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/threadfin/conf:/home/threadfin/conf
       - ${DOCKER_APP_BASE_PATH}/threadfin/temp:/tmp/threadfin:rw
