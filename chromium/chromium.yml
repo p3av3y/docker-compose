@@ -19,7 +19,7 @@ services:
     ports:
       - 3100:3000
       - 3101:3001
-    shm_size: "1gb"
+    shm_size: "4gb"
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
