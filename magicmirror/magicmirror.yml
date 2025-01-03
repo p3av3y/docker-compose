@@ -7,16 +7,17 @@ services:
     restart: unless-stopped
     networks:
       - pvnet     
-    #environment:
+    environment:
     #  - PUID=${PUID}
     #  - PGID=${PGID}
     #  - TZ=${TZ}
+      - M_SCENARIO="server"
     volumes:
       - ${DOCKER_APP_BASE_PATH}/magicmirror/config:/config
       - ${DOCKER_APP_BASE_PATH}/magicmirror/modules:/modules
       - ${DOCKER_APP_BASE_PATH}/magicmirror/css:/css
     ports:
-      - 8081:8080
+      - 8082:8080
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
