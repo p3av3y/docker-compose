@@ -1,0 +1,25 @@
+# Magicmirror
+
+services:
+  magicmirror:
+    image: karsten13/magicmirror:latest
+    container_name: maggicmirror
+    restart: unless-stopped
+    networks:
+      - pvnet     
+    #environment:
+    #  - PUID=${PUID}
+    #  - PGID=${PGID}
+    #  - TZ=${TZ}
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/config:/config
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/modules:/modules
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/css:/css
+    ports:
+      - 8081:8080
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+networks:
+   pvnet:
+     external: true  

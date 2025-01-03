@@ -12,7 +12,8 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ${DOCKER_APP_BASE_PATH}:/config
+      - ${DOCKER_APP_BASE_PATH}/orcaslicer/config:/config
+      - ${DOCKER_APP_BASE_PATH}/orcaslicer/data:/data
     ports:
       - 3010:3000
       - 3011:3001
