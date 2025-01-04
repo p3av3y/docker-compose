@@ -12,8 +12,8 @@ services:
     #  - PGID=${PGID}
     #  - TZ=${TZ}
       - M_SCENARIO="server"
-      - MM_UID=${PUID}
-      - MM_GID=${PGID}
+    #  - MM_UID=${PUID}
+    #  - MM_GID=${PGID}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/magicmirror/config:/opt/magic_mirror/config
       - ${DOCKER_APP_BASE_PATH}/magicmirror/modules:/opt/magic_mirror/modules
