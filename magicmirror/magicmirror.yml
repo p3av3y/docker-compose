@@ -16,6 +16,7 @@ services:
       - ${DOCKER_APP_BASE_PATH}/magicmirror/config:/opt/magic_mirror/config
       - ${DOCKER_APP_BASE_PATH}/magicmirror/modules:/opt/magic_mirror/modules
       - ${DOCKER_APP_BASE_PATH}/magicmirror/css://opt/magic_mirror/css
+    ports:      
       - 8082:8080
     labels:
       - com.centurylinklabs.watchtower.enable=true
