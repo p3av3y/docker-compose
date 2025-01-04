@@ -13,10 +13,9 @@ services:
     #  - TZ=${TZ}
       - M_SCENARIO="server"
     volumes:
-      - ${DOCKER_APP_BASE_PATH}/magicmirror/config:/config
-      - ${DOCKER_APP_BASE_PATH}/magicmirror/modules:/modules
-      - ${DOCKER_APP_BASE_PATH}/magicmirror/css:/css
-    ports:
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/config:/opt/magic_mirror/config
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/modules:/opt/magic_mirror/modules
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/css://opt/magic_mirror/css
       - 8082:8080
     labels:
       - com.centurylinklabs.watchtower.enable=true
