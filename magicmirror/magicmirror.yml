@@ -44,7 +44,7 @@ services:
     volumes:
       # Directory of your MagicMirror installation, edit left side for your needs
       # In this example the MagicMirror installation is in /home/pi/magicmirror:
-      - ${DOCKER_APP_BASE_PATH}/magicmirror/config::/home/node/MagicMirror/config
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/config:/home/node/MagicMirror/config
       - ${DOCKER_APP_BASE_PATH}/magicmirror/modules:/home/node/MagicMirror/modules
       - ${DOCKER_APP_BASE_PATH}/magicmirror/css:/home/node/MagicMirror/css
       - ${DOCKER_APP_BASE_PATH}/mmpm:/home/node/.config/mmpm
