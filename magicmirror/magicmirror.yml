@@ -17,12 +17,38 @@ services:
     volumes:
       - ${DOCKER_APP_BASE_PATH}/magicmirror/config:/opt/magic_mirror/config
       - ${DOCKER_APP_BASE_PATH}/magicmirror/modules:/opt/magic_mirror/modules
-      - ${DOCKER_APP_BASE_PATH}/magicmirror/css://opt/magic_mirror/css
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/css:/opt/magic_mirror/css
     ports:      
       - 8082:8080
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
+  mmpm:
+    image: karsten13/mmpm:latest
+    container_name: mmpm
+    restart: unless-stopped
+    networks:
+      - pvnet     
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    #  - M_SCENARIO="server"
+    #  - MM_UID=${PUID}
+    #  - MM_GID=${PGID}
+    ports:
+      - "7890:7890"
+      - "7891:7891"
+      - "6789:6789"
+      - "8907:8907"
+    volumes:
+      # Directory of your MagicMirror installation, edit left side for your needs
+      # In this example the MagicMirror installation is in /home/pi/magicmirror:
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/config::/home/node/MagicMirror/config
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/modules:/home/node/MagicMirror/modules
+      - ${DOCKER_APP_BASE_PATH}/magicmirror/css:/home/node/MagicMirror/css
+      - ${DOCKER_APP_BASE_PATH}/mmpm:/home/node/.config/mmpm
+    
 networks:
    pvnet:
      external: true  
