@@ -1,6 +1,5 @@
 services:
   pihole:
-    container_name: pihole
     image: pihole/pihole:latest
     container_name: pihole
     restart: unless-stopped
