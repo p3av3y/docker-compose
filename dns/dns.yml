@@ -2,6 +2,7 @@ services:
   pihole:
     image: pihole/pihole:latest
     container_name: pihole
+    hostname: pihole
     restart: unless-stopped
     networks:
       - dns
@@ -23,6 +24,7 @@ services:
   unbound:
     image: mvance/unbound:latest
     container_name: unbound
+    hostname: unbound
     restart: unless-stopped
     networks:
       - dns
