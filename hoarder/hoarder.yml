@@ -26,7 +26,10 @@ services:
       # By default, the data is stored in a docker volume called "data".
       # If you want to mount a custom directory, change the volume mapping to:
       # - /path/to/your/directory:/data
-      - ${DOCKER_APP_BASE_PATH}/hoarder:/data
+      - type: bind
+        source: ${DOCKER_APP_BASE_PATH}/hoarder
+        target: /data
+        mode: rw
   hoarder-chrome:
     image: gcr.io/zenika-hub/alpine-chrome:123
     container_name: hoarder-chrome
@@ -54,7 +57,10 @@ services:
       - TZ=${TZ}
       - MEILI_NO_ANALYTICS="true"
     volumes:
-      - ${DOCKER_APP_BASE_PATH}/meilisearch:/meili_data
+      - type: bind
+        source: ${DOCKER_APP_BASE_PATH}/meilisearch
+        target: /meili_data
+        mode: rw
 
 networks:
    pvnet:
