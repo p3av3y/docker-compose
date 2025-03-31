@@ -29,7 +29,6 @@ services:
       - type: bind
         source: ${DOCKER_APP_BASE_PATH}/hoarder
         target: /data
-        mode: rw
   hoarder-chrome:
     image: gcr.io/zenika-hub/alpine-chrome:123
     container_name: hoarder-chrome
@@ -60,7 +59,6 @@ services:
       - type: bind
         source: ${DOCKER_APP_BASE_PATH}/meilisearch
         target: /meili_data
-        mode: rw
 
 networks:
    pvnet:
