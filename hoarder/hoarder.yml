@@ -22,7 +22,7 @@ services:
       # By default, the data is stored in a docker volume called "data".
       # If you want to mount a custom directory, change the volume mapping to:
       # - /path/to/your/directory:/data
-      - ${DOCKER_APP_BASE_PATH}/hoarder:/data
+      - /mnt/nebula/docker/appdata/hoarder:/data
     ports:
       - 3020:3000
     env_file:
