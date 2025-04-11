@@ -21,6 +21,8 @@ services:
       # - ACTUAL_UPLOAD_FILE_SIZE_LIMIT_MB=20
       # See all options and more details at https://actualbudget.github.io/docs/Installing/Configuration
       # !! If you are not using any of these options, remove the 'environment:' tag entirely.
+      - PUID=${PUID}
+      - PGID=${PGID}
       - TZ=${TZ}
     volumes:
       # Change './actual-data' below to the path to the folder you want Actual to store its data in on your server.
