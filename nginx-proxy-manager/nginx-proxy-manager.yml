@@ -37,6 +37,6 @@ services:
 networks:
    reverse-proxy:
      external: true
-   #pvnet:
-   #  external: true
+   pvnet:
+     external: true
 
