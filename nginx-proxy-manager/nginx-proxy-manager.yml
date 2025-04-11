@@ -9,7 +9,7 @@ services:
     networks:
       - reverse-proxy:
           ipv4_address: 192.168.0.80
-      - pvnet
+      #- pvnet
     restart: unless-stopped
     env_file: 
       - /env-files/nginx-proxy-manager.env
@@ -28,12 +28,14 @@ services:
     volumes:
       - ${DOCKER_APP_BASE_PATH}/nginx-proxy-manager:/data
       - ${DOCKER_APP_BASE_PATH}/ginx-proxy-manager/certificates:/etc/letsencrypt
+    cap_add:
+      - NET_ADMIN
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
 networks:
    reverse-proxy:
      external: true
-   pvnet:
-     external: true
+   #pvnet:
+   #  external: true
 
