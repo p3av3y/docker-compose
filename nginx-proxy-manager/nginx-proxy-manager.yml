@@ -9,8 +9,7 @@ services:
     container_name: nginx-proxy-manager
     image: jc21/nginx-proxy-manager:latest
     networks:
-      reverse-proxy:
-        ipv4_address: 192.168.0.80
+      - reverse-proxy
       #- pvnet
     restart: unless-stopped
     env_file: 
