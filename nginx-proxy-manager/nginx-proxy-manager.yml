@@ -2,6 +2,8 @@
 #
 # docker network create --driver macvlan --subnet 192.168.0.0/22 --ip-range 192.168.0.80/32 --macvlan-mode bridge -o parent=br0 reverse-proxy
 
+# sudo docker network create -d macvlan --subnet 192.168.0.0/21 --gateway 192.168.0.1 --ip-range 192.168.0.80/32 -o parent=ens18 reverse-proxy
+
 services:
   nginx-proxy-manager:
     container_name: nginx-proxy-manager
