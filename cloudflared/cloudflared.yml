@@ -12,6 +12,6 @@ services:
     #environment:
     #  - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     volumes:
-      - ${DOCKER_APP_BASE_PATH}/cloudflared:/etc/cloudflared  
+      - $DOCKER_APP_BASE_PATH/cloudflared:/etc/cloudflared  
     labels:
       - com.centurylinklabs.watchtower.enable=true
