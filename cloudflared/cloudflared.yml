@@ -6,12 +6,11 @@ services:
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
     env_file: 
-      - /env-files/common.env
       - /env-files/cloudflared.env 
     command: tunnel --no-autoupdate run
     #environment:
     #  - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     volumes:
-      - $DOCKER_APP_BASE_PATH/cloudflared:/etc/cloudflared  
+      - ${DOCKER_APP_BASE_PATH}/cloudflared:/etc/cloudflared  
     labels:
       - com.centurylinklabs.watchtower.enable=true

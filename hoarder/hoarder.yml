@@ -23,7 +23,7 @@ services:
       # By default, the data is stored in a docker volume called "data".
       # If you want to mount a custom directory, change the volume mapping to:
       # - /path/to/your/directory:/data
-      - /mnt/nebula/docker/appdata/hoarder:/data
+      - ${DOCKER_APP_BASE_PATH}/hoarder:/data
     ports:
       - 3020:3000
 
@@ -58,7 +58,7 @@ services:
       - TZ=${TZ}
       - MEILI_NO_ANALYTICS=true
     volumes:
-      - /mnt/nebula/docker/appdata/meilisearch:/meili_data
+      - ${DOCKER_APP_BASE_PATH}/meilisearch:/meili_data
 
 networks:
    pvnet:
