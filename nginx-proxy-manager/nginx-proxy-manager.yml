@@ -1,10 +1,14 @@
 # 
+#
+# docker network create --driver macvlan --subnet 192.168.0.0/22 --ip-range 192.168.0.80/32 --macvlan-mode bridge -o parent=br0 reverse-proxy
 
 services:
   nginx-proxy-manager:
     container_name: nginx-proxy-manager
     image: jc21/nginx-proxy-manager:latest
     networks:
+      - reverse-proxy:
+          ipv4_address: 192.168.0.80
       - pvnet
     restart: unless-stopped
     env_file: 
@@ -28,6 +32,8 @@ services:
       - com.centurylinklabs.watchtower.enable=true
 
 networks:
+   reverse-proxy:
+     external: true
    pvnet:
      external: true
 
