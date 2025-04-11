@@ -10,7 +10,6 @@ services:
     image: jc21/nginx-proxy-manager:latest
     networks:
       - reverse-proxy
-      - pvnet
     restart: unless-stopped
     env_file: 
       - /env-files/nginx-proxy-manager.env
@@ -36,7 +35,5 @@ services:
 
 networks:
    reverse-proxy:
-     external: true
-   pvnet:
      external: true
 
