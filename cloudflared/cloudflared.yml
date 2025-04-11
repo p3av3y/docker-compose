@@ -6,6 +6,7 @@ services:
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
     env_file: 
+      - /env-files/common.env
       - /env-files/cloudflared.env 
     command: tunnel --no-autoupdate run
     #environment:
