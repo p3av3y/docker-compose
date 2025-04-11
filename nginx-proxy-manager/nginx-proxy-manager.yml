@@ -1,0 +1,33 @@
+# 
+
+services:
+  nginx-proxy-manager:
+    container_name: nginx-proxy-manager
+    image: jc21/nginx-proxy-manager:latest
+    networks:
+      - pvnet
+    restart: unless-stopped
+    env_file: 
+      - /env-files/nginx-proxy-manager.env
+    environment:
+      - DB_SQLITE_FILE=/data/npm.sqlite
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - 80:80 # Public HTTP Port
+      - 443:443 # Public HTTPS Port
+      - 81:81 # Admin Web Port
+      # Add any other Stream port you want to expose
+      # - '21:21' # FTP
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/nginx-proxy-manager:/data
+      - ${DOCKER_APP_BASE_PATH}/ginx-proxy-manager/certificates:/etc/letsencrypt
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+networks:
+   pvnet:
+     external: true
+
