@@ -31,3 +31,5 @@ services:
       - "/dev/dri/card0:/dev/dri/card0"
       - "/dev/dri/renderD128:/dev/dri/renderD128"
     restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"   
