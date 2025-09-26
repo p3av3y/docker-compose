@@ -8,11 +8,11 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${PUID}
-      - GUID=${PGID}
+      - PGID=${PGID}
       - CRASHPLAN_SRV_MAX_MEM=8192M
     volumes:
-      - /mnt/nebula/docker/appdata/crashplan-pro:/config
-      #- ${DOCKER_APP_BASE_PATH}/crashplan-pro:/config
+      #- /mnt/nebula/docker/appdata/crashplan-pro:/config
+      - ${DOCKER_APP_BASE_PATH}/crashplan-pro:/config
       - /mnt/galaxy:/storage/galaxy
       - /mnt/nebula:/storage/nebula
     labels:
