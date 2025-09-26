@@ -6,13 +6,16 @@ services:
     ports:
       - 5800:5800
     environment:
-      - TZ=${TZ}
-      - PUID=${PUID}
-      - PGID=${PGID}
+      - TZ=America\Chicago
+      - PUID=3001
+      - PGID=3001
+      #- TZ=${TZ}
+      #- PUID=${PUID}
+      #- PGID=${PGID}
       - CRASHPLAN_SRV_MAX_MEM=8192M
     volumes:
-      #- /mnt/nebula/docker/appdata/crashplan-pro:/config
-      - ${DOCKER_APP_BASE_PATH}/crashplan-pro:/config
+      - /mnt/nebula/docker/appdata/crashplan-pro:/config
+      #- ${DOCKER_APP_BASE_PATH}/crashplan-pro:/config
       - /mnt/galaxy:/storage/galaxy
       - /mnt/nebula:/storage/nebula
     labels:
