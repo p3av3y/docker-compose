@@ -1,4 +1,3 @@
-version: '3.6'
 
 services:
   crashplan-pro:
@@ -12,7 +11,8 @@ services:
       - GUID=${PGID}
       - CRASHPLAN_SRV_MAX_MEM=8192M
     volumes:
-      - ${DOCKER_APP_BASE_PATH}/crashplan-pro:/config
+      - /mnt/nebula/docker/appdata/crashplan-pro:/config
+      #- ${DOCKER_APP_BASE_PATH}/crashplan-pro:/config
       - /mnt/galaxy:/storage/galaxy
       - /mnt/nebula:/storage/nebula
     labels:
