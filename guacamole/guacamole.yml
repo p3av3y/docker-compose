@@ -40,6 +40,6 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
-  networks:
+networks:
    pvnet:
-     external: true  
+     external: true
