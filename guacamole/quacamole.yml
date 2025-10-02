@@ -1,1 +1,45 @@
 # guacamole
+
+services:
+  guacamole:
+    image: guacamole/guacamole:latest
+    container_name: guacamole
+    env_file: 
+      - /env-files/guacamole.env 
+    networks:
+      - pvnet
+    ports:
+      - 8086:8080/tcp
+    # Don't know what group_add does
+    # group_add:
+    #  - "1000"
+    # depends_on:
+    #- guacd
+    environment:
+      GUACD_HOSTNAME: guacd
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_HOSTNAME: ${MYSQL_HOSTNAME}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USERNAME: ${MYSQL_USER}
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/guacamole:/config
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+  guacd:
+    image: guacamole/guacd:latest
+    container_name: guacd
+    env_file: 
+      - /env-files/guacamole.env 
+    networks:
+      - pvnet
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+  networks:
+   pvnet:
+     external: true  
