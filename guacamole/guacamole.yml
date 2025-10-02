@@ -6,13 +6,12 @@ services:
     container_name: guacamole
     env_file: 
       - /env-files/guacamole.env 
+    group_add:
+      - 3001
     networks:
       - pvnet
     ports:
       - 8086:8080/tcp
-    # Don't know what group_add does
-    # group_add:
-    #  - "1000"
     # depends_on:
     #- guacd
     environment:
@@ -31,7 +30,9 @@ services:
     image: guacamole/guacd:latest
     container_name: guacd
     env_file: 
-      - /env-files/guacamole.env 
+      - /env-files/guacamole.env
+    group_add:
+      - 3001
     networks:
       - pvnet
     restart: unless-stopped
