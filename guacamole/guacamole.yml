@@ -8,8 +8,7 @@ services:
       - /env-files/guacamole.env 
     #group_add:
     #  - 3001
-    user: 
-      - 3001:3001
+    user: "3001:3001"
     networks:
       - pvnet
     ports:
@@ -33,8 +32,7 @@ services:
     container_name: guacd
     env_file: 
       - /env-files/guacamole.env
-    user: 
-      - 3001:3001
+    user: "3001:3001"
     # group_add:
     #   - 3001
     networks:
