@@ -3,8 +3,6 @@
 services:
   guacamole:
     image: guacamole/guacamole:latest
-    container_name: guacamole
-    command: ["guacd", "--log-level", "debug"]
     env_file: 
       - /env-files/guacamole.env 
     #group_add:
