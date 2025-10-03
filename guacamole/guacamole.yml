@@ -20,7 +20,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_HOSTNAME: ${MYSQL_HOSTNAME}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_USERNAME: ${MYSQL_USER}
+      MYSQL_USERNAME: ${MYSQL_USERNAME}
     restart: unless-stopped
     volumes:
       # - ${DOCKER_APP_BASE_PATH}/guacamole:/config
