@@ -22,7 +22,7 @@ services:
       #- MYSQL_HOSTNAME=${MYSQL_HOSTNAME}
       #- MYSQL_PASSWORD=${MYSQL_PASSWORD}
       #- MYSQL_USERNAME=${MYSQL_USERNAME}
-      # - LOG_LEVEL=debug
+      - LOG_LEVEL=debug
     volumes:
       # - ${DOCKER_APP_BASE_PATH}/guacamole:/config
       - /mnt/nebula/docker/appdata/guacamole:/config
