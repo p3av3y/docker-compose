@@ -3,6 +3,7 @@
 services:
   guacamole:
     image: guacamole/guacamole:latest
+    container_name: guacamole
     env_file: 
       - /env-files/guacamole.env 
     #group_add:
