@@ -23,7 +23,8 @@ services:
       MYSQL_USERNAME: ${MYSQL_USER}
     restart: unless-stopped
     volumes:
-      - ${DOCKER_APP_BASE_PATH}/guacamole:/config
+      # - ${DOCKER_APP_BASE_PATH}/guacamole:/config
+      - /mnt/nebula/docker/appdata/guacamole:/config
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
