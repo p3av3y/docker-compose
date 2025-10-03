@@ -4,11 +4,12 @@ services:
   guacamole:
     image: guacamole/guacamole:latest
     container_name: guacamole
+    restart: unless-stopped
+    user: "3001:3001"
     env_file: 
       - /env-files/guacamole.env 
     #group_add:
     #  - 3001
-    user: "3001:3001"
     networks:
       - pvnet
     ports:
@@ -16,13 +17,12 @@ services:
     # depends_on:
     #- guacd
     environment:
-      GUACD_HOSTNAME: guacd
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_HOSTNAME: ${MYSQL_HOSTNAME}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_USERNAME: ${MYSQL_USERNAME}
+      GUACD_HOSTNAME=guacd
+      MYSQL_DATABASE=${MYSQL_DATABASE}
+      MYSQL_HOSTNAME=${MYSQL_HOSTNAME}
+      MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      MYSQL_USERNAME=${MYSQL_USERNAME}
       LOG_LEVEL: debug
-    restart: unless-stopped
     volumes:
       # - ${DOCKER_APP_BASE_PATH}/guacamole:/config
       - /mnt/nebula/docker/appdata/guacamole:/config
