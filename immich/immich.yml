@@ -18,6 +18,7 @@ services:
       - 2283:2283
     environment:
       - DB_HOSTNAME=immich-postgres
+      # Since this had the same name, this was resetting it to null
       #- DB_USERNAME=${DB_USERNAME}
       #- DB_PASSWORD=${DB_PASSWORD}
       #- DB_DATABASE_NAME=${DB_DATABASE_NAME}
