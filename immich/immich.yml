@@ -7,7 +7,8 @@ services:
       disable: false
     env_file:
       - /env-files/common.env 
-      - /env-files/immich.env 
+      - /env-files/immich.env
+      - stack.env
     networks:
       - pvnet
     #network_mode: "container:gluetun"
@@ -37,6 +38,7 @@ services:
     env_file:
       - /env-files/common.env 
       - /env-files/immich.env 
+      - stack.env
     volumes:
       # SSD: Fast model loading
       - ${DOCKER_APP_BASE_PATH}/immich/model-cache:/cache
@@ -54,6 +56,7 @@ services:
     env_file:
       - /env-files/common.env 
       - /env-files/immich.env 
+      - stack.env
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -71,6 +74,7 @@ services:
     env_file:
       - /env-files/common.env 
       - /env-files/immich.env 
+      - stack.env
     healthcheck:
       # Alpine uses a lightweight shell, so CMD-SHELL is the safest way to call redis-cli
       test: ["CMD-SHELL", "redis-cli ping || exit 1"]
