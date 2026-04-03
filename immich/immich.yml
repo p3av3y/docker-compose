@@ -1,6 +1,7 @@
 services:
   immich-server:
     container_name: immich_server
+    hostname: immich-server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     restart: unless-stopped
     healthcheck:
@@ -31,6 +32,7 @@ services:
     
   immich-machine-learning:
     container_name: immich_machine_learning
+    hostname: immich-machine-learning
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     restart: unless-stopped
     env_file:
@@ -41,6 +43,7 @@ services:
 
   database:
     container_name: immich_postgres
+    hostname: immich-postgres
     image: ghcr.io/immich-app/postgres:16-vectorchord0.5.3-pgvector0.8.1
     # REMOVED THE STRAY "app/postgres" LINE HERE
     restart: unless-stopped
@@ -63,6 +66,7 @@ services:
  
   redis:
     container_name: immich_redis
+    hostname: immich-redis
     image: docker.io/valkey/valkey:9-alpine
     restart: unless-stopped
     env_file:
