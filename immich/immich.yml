@@ -18,9 +18,9 @@ services:
       - 2283:2283
     environment:
       - DB_HOSTNAME=immich-postgres
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_DATABASE_NAME=${DB_DATABASE_NAME}
+      #- DB_USERNAME=${DB_USERNAME}
+      #- DB_PASSWORD=${DB_PASSWORD}
+      #- DB_DATABASE_NAME=${DB_DATABASE_NAME}
       - REDIS_HOSTNAME=immich-redis
     volumes:
       - ${DOCKER_APP_BASE_PATH}/immich/data:/data
