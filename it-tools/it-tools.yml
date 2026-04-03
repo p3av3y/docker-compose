@@ -1,0 +1,23 @@
+# it-tools
+
+services:
+  it-tools:
+    container_name: it-tools
+    image: CorentinTh/it-tools:latest
+    restart: unless-stopped
+    hostname: it-tools
+    networks:
+      - pvnet
+    ports:
+      - 8008:80  # Access it at http://<NAS-IP>:8080
+    environment:
+      - TZ=${TZ}
+    # Optional: If you want to persist specific settings or custom tools
+    # volumes:
+    #   - ${DOCKER_APP_BASE_PATH}/it-tools:/usr/share/nginx/html/custom
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      
+networks:
+  pvnet:
+    external: true
