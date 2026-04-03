@@ -7,7 +7,8 @@ services:
     healthcheck:
       disable: false
     env_file:
-      - ${DOCKER_BASE_PATH}/env-files/immich.env 
+      #- ${DOCKER_BASE_PATH}/env-files/immich.env 
+      - /env-files/immich.env
     networks:
       - pvnet
     #network_mode: "container:gluetun"
@@ -36,7 +37,8 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     restart: unless-stopped
     env_file:
-      - ${DOCKER_BASE_PATH}/env-files/immich.env 
+      #- ${DOCKER_BASE_PATH}/env-files/immich.env 
+      - /env-files/immich.env
     networks:
       - pvnet
     volumes:
@@ -55,7 +57,8 @@ services:
       timeout: 5s
       retries: 5
     env_file:
-      - ${DOCKER_BASE_PATH}/env-files/immich.env 
+      #- ${DOCKER_BASE_PATH}/env-files/immich.env 
+      - /env-files/immich.env
     networks:
       - pvnet
     environment:
@@ -74,7 +77,8 @@ services:
     image: docker.io/valkey/valkey:9-alpine
     restart: unless-stopped
     env_file:
-      - ${DOCKER_BASE_PATH}/env-files/immich.env 
+      #- ${DOCKER_BASE_PATH}/env-files/immich.env 
+      - /env-files/immich.env
     networks:
       - pvnet
     healthcheck:
