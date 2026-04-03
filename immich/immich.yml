@@ -40,15 +40,18 @@ services:
   database:
     container_name: immich_postgres
     image: ghcr.io/immich-app/postgres:16-vectorchord0.5.3-pgvector0.8.1
-    app/postgres:16-vectorchord0.4.3
+    # REMOVED THE STRAY "app/postgres" LINE HERE
     restart: unless-stopped
     healthcheck:
-      disable: false   
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE_NAME}
-      - POSTGRES_INITDB_ARGS=--data-checksums 
+      - POSTGRES_INITDB_ARGS=--data-checksums
     volumes:
       # SSD: Fast database queries and timeline scrolling
       - ${DOCKER_APP_BASE_PATH}/immich/postgres:/var/lib/postgresql/data
