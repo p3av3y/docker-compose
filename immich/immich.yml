@@ -22,6 +22,7 @@ services:
       - DB_DATABASE_NAME=${DB_DATABASE_NAME}
       - REDIS_HOSTNAME=immich-redis
     volumes:
+      - ${DOCKER_APP_BASE_PATH}/immich/data:/data
       # Managed Storage: New phone backups go here
       - ${NAS_GALAXY_BASE_PATH}/media/photos/immich_library:/usr/src/app/upload
       # External Storage: Your existing bulk photos (Mapped as Read-Only)
