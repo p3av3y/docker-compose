@@ -8,7 +8,8 @@ services:
       disable: false
     env_file:
       #- ${DOCKER_BASE_PATH}/env-files/immich.env 
-      - /env-files/immich.env
+      #- /env-files/immich.env
+      - /mnt/nebula/docker/env-files/immich.env 
     networks:
       - pvnet
     #network_mode: "container:gluetun"
