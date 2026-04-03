@@ -1,0 +1,65 @@
+services:
+  immich-server:
+    container_name: immich_server
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+    env_file:
+      - /env-files/immich.env 
+    networks:
+      - pvnet
+    #network_mode: "container:gluetun"
+    # removed to use gluetun
+    ports:
+      - 2283:2283
+    environment:
+      - DB_HOSTNAME=immich-postgres
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE_NAME=${DB_DATABASE_NAME}
+      - REDIS_HOSTNAME=immich-redis
+    volumes:
+      # Managed Storage: New phone backups go here
+      - ${NAS_GALAXY_BASE_PATH}/media/photos/immich_library:/data
+      # External Storage: Your existing bulk photos (Mapped as Read-Only)
+      - ${NAS_GALAXY_BASE_PATH}/media/photos:/mnt/media/photos:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - redis
+      - database
+    
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    volumes:
+      # SSD: Fast model loading
+      - ${DOCKER_APP_BASE_PATH}/immich/model-cache:/cache
+    restart: unless-stopped
+
+  database:
+    container_name: immich_postgres
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+    restart: unless-stopped
+    healthcheck:
+      disable: false   
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE_NAME}
+      - POSTGRES_INITDB_ARGS: '--data-checksums'
+    volumes:
+      # SSD: Fast database queries and timeline scrolling
+      - ${DOCKER_APP_BASE_PATH}/immich/postgres:/var/lib/postgresql/data
+    shm_size: 128mb
+ 
+  redis:
+    container_name: immich_redis
+    image: docker.io/valkey/valkey:9
+    restart: unless-stopped
+    healthcheck:
+      test: redis-cli ping || exit 1
+
+networks:
+   pvnet:
+     external: true
