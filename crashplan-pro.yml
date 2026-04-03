@@ -4,13 +4,19 @@ services:
   crashplan-pro:
     image: jlesage/crashplan-pro
     container_name: crashplan-pro
+    networks:
+      - pvnet
     ports:
       - 5800:5800
     environment:
-      - TZ=America/Chicago
-      - PUID=1980
-      - PGID=1980
+      #- TZ=America/Chicago
+      #- PUID=1980
+      #- PGID=1980
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
       - CRASHPLAN_SRV_MAX_MEM=8192M
+    restart: unless-stopped
     volumes:
       - /srv/docker/appdata/crashplan-pro:/config
       #- /nebula/docker/appdata/crashplan-pro:/config
@@ -18,3 +24,5 @@ services:
       #- /nebula:/storage/nebula
       - /mnt/galaxy:/storage/galaxy
       - /mnt/nebula:/storage/nebula
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
