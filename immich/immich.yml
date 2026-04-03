@@ -6,6 +6,7 @@ services:
     healthcheck:
       disable: false
     env_file:
+      - /env-files/common.env 
       - /env-files/immich.env 
     networks:
       - pvnet
@@ -32,10 +33,13 @@ services:
   immich-machine-learning:
     container_name: immich_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    restart: unless-stopped
+    env_file:
+      - /env-files/common.env 
+      - /env-files/immich.env 
     volumes:
       # SSD: Fast model loading
       - ${DOCKER_APP_BASE_PATH}/immich/model-cache:/cache
-    restart: unless-stopped
 
   database:
     container_name: immich_postgres
@@ -47,6 +51,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    env_file:
+      - /env-files/common.env 
+      - /env-files/immich.env 
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -61,6 +68,9 @@ services:
     container_name: immich_redis
     image: docker.io/valkey/valkey:9-alpine
     restart: unless-stopped
+    env_file:
+      - /env-files/common.env 
+      - /env-files/immich.env 
     healthcheck:
       # Alpine uses a lightweight shell, so CMD-SHELL is the safest way to call redis-cli
       test: ["CMD-SHELL", "redis-cli ping || exit 1"]
