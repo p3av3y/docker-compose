@@ -13,8 +13,8 @@ services:
     restart: unless-stopped
     # Attach to both networks
     networks:
-      reverse-proxy:
-        ipv4_address: 192.168.0.80  # Its own public IP
+      pvpub:
+        ipv4_address: 192.168.1.80  # Its own public IP
       pvnet: {}                     # Internal bridge to talk to other apps
     env_file: 
       - /env-files/nginx-proxy-manager.env
@@ -39,7 +39,7 @@ services:
       - com.centurylinklabs.watchtower.enable=true
 
 networks:
-  reverse-proxy:
+  pvpub:
     external: true
   pvnet:
     external: true
