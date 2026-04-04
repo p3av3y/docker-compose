@@ -4,7 +4,10 @@ services:
   minecraft:
     image: itzg/minecraft-bedrock-server:latest
     container_name: "minecraft-bedrock-server"
+    hostname: minecraft-bedrock-server
     restart: unless-stopped
+    networks:
+      - pvnet
     ports:
       - "19132:19132/udp"
     volumes:
@@ -35,4 +38,8 @@ services:
       ENABLE_WHITELIST: "TRUE"
       ENFORCE_WHITELIST: "TRUE"
     labels:
-      - com.centurylinklabs.watchtower.enable=true    
+      - com.centurylinklabs.watchtower.enable=true
+
+networks:
+  pvnet:
+    external: true
