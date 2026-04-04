@@ -4,7 +4,10 @@ services:
   orcaslicer:
     image: lscr.io/linuxserver/orcaslicer:latest
     container_name: orcaslicer
+    hostname: orcaslicer
     restart: unless-stopped
+    networks:
+      - pvnet
     security_opt:
       - seccomp:unconfined #optional
     environment:
@@ -20,3 +23,7 @@ services:
     shm_size: "4gb"
     labels:
       - com.centurylinklabs.watchtower.enable=true
+
+networks:
+  pvnet:
+    external: true
