@@ -21,8 +21,8 @@ services:
       - /env-files/nginx-proxy-manager.env
     environment:
       - DB_SQLITE_FILE=/data/npm.sqlite
-      - PUID=${PUID}
-      - PGID=${PUID}
+      #- PUID=${PUID}
+      #- PGID=${PUID}
       - TZ=${TZ}
     # Ports are technically redundant with macvlan but kept for reference
     # When you use a macvlan network, the container gets its own virtual network card with its own IP. You don't need to "map" the ports to the host anymore.
