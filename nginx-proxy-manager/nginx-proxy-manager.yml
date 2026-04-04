@@ -15,7 +15,7 @@ services:
     # Attach to both networks
     networks:
       pvpub:
-        ipv4_address: 192.168.1.80  # Its own public IP
+        ipv4_address: 192.168.0.80  # Its own public IP
       pvnet: {}                     # Internal bridge to talk to other apps
     env_file: 
       - /env-files/nginx-proxy-manager.env
