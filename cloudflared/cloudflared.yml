@@ -3,14 +3,22 @@
 services:
   cloudflared:
     container_name: cloudflared
+    hostname: cloudflared
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
+    networks:
+      - pvnet
     env_file: 
       - /env-files/cloudflared.env 
     command: tunnel --no-autoupdate run
+    # Not needed as the cloudflared.env has tunnel_token set
     #environment:
     #  - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/cloudflared:/etc/cloudflared  
     labels:
       - com.centurylinklabs.watchtower.enable=true
+
+networks:
+  pvnet:
+    external: true
