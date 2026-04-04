@@ -44,5 +44,5 @@ services:
 networks:
   pvpub:
     external: true
-  #pvnet:
-  #  external: true
+  pvnet:
+    external: true
