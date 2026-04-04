@@ -8,32 +8,35 @@ services:
   nginx-proxy-manager:
     container_name: nginx-proxy-manager
     image: jc21/nginx-proxy-manager:latest
-    networks:
-      - reverse-proxy
     restart: unless-stopped
+    # Attach to both networks
+    networks:
+      reverse-proxy:
+        ipv4_address: 192.168.0.80  # Its own public IP
+      pvnet: {}                     # Internal bridge to talk to other apps
     env_file: 
       - /env-files/nginx-proxy-manager.env
     environment:
       - DB_SQLITE_FILE=/data/npm.sqlite
       - PUID=${PUID}
-      - PGID=${PGID}
+      - PGID=${PUID}
       - TZ=${TZ}
+    # Ports are technically redundant with macvlan but kept for reference
     ports:
-      # These ports are in format <host-port>:<container-port>
-      - 80:80 # Public HTTP Port
-      - 443:443 # Public HTTPS Port
-      - 81:81 # Admin Web Port
-      # Add any other Stream port you want to expose
-      # - '21:21' # FTP
+      - 80:80
+      - 443:443
+      - 81:81
     volumes:
+      # SSD: Fast database access and certificate storage
       - ${DOCKER_APP_BASE_PATH}/nginx-proxy-manager:/data
-      - ${DOCKER_APP_BASE_PATH}/ginx-proxy-manager/certificates:/etc/letsencrypt
+      - ${DOCKER_APP_BASE_PATH}/nginx-proxy-manager/certificates:/etc/letsencrypt
     cap_add:
       - NET_ADMIN
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
 networks:
-   reverse-proxy:
-     external: true
-
+  reverse-proxy:
+    external: true
+  pvnet:
+    external: true
