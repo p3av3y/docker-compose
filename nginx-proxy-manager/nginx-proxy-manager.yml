@@ -12,13 +12,13 @@ services:
     hostname: nginx-proxy-manager
     image: jc21/nginx-proxy-manager:latest
     restart: unless-stopped
-    # Attach to both networks
     networks:
+      # We define the connection details here
       pvpub:
-        ipv4_address: 192.168.0.80  # Its own public IP
-        priority: 1000  # Higher number = Higher priority
-      pvnet: {}                     # Internal bridge to talk to other apps
-        priority: 10    # Lower priority        
+        ipv4_address: 192.168.0.80
+        priority: 1000  # High priority = Default Gateway
+      pvnet:
+        priority: 10    # Low priority = Secondary route     
     env_file: 
       - /env-files/nginx-proxy-manager.env
     environment:
