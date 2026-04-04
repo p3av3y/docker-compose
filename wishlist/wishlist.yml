@@ -2,7 +2,10 @@ services:
   wishlist:
     image: ghcr.io/cmintey/wishlist:latest
     container_name: wishlist
+    hostname: wishlist
     restart: unless-stopped
+    networks:
+      - pvnet
     ports:
       - 3280:3280
     volumes:
@@ -13,4 +16,8 @@ services:
       ORIGIN: http://wishlist.p3av3y.com # The URL your users will be connecting to
       TOKEN_TIME: 72 # hours until signup and password reset tokens expire
     labels:
-      - com.centurylinklabs.watchtower.enable=true      
+      - com.centurylinklabs.watchtower.enable=true
+      
+networks:
+  pvnet:
+    external: true
