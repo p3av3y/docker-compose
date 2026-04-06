@@ -1,0 +1,25 @@
+# Scanopy
+
+services:
+  scanopy:
+    container_name: scanopy
+    image: scanopy/scanopy:latest
+    restart: unless-stopped
+    hostname: scanopy
+    # Required for full network visibility and ARP scanning
+    network_mode: host 
+    networks:
+      - pvnet
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/scanopy:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+networks:
+  pvnet:
+    external: true
