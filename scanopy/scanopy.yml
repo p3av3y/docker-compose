@@ -19,7 +19,7 @@ services:
 
   scanopy-server:
     container_name: scanopy-server
-    image: ghcr.io/scanopy/scanopy/full:latest
+    image: ghcr.io/scanopy/scanopy/server:latest
     hostname: scanopy-server
     restart: unless-stopped
     networks:
@@ -32,6 +32,7 @@ services:
       # - SCANOPY_DATABASE_URL=postgres://${SCANOPY_DB_USER}:${SCANOPY_DB_PASSWORD}@scanopy-db:5432/${SCANOPY_DB_NAME}
       - TZ=${TZ}
       - SCANOPY_UI_ENABLED=true
+      - HOST=0.0.0.0
     ports:
       - "60072:60072"
     volumes:
