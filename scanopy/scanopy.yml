@@ -19,7 +19,7 @@ services:
 
   scanopy-server:
     container_name: scanopy-server
-    image: ghcr.io/scanopy/scanopy/server:latest
+    image: ghcr.io/scanopy/scanopy/full:latest
     hostname: scanopy-server
     restart: unless-stopped
     networks:
