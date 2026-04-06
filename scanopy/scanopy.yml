@@ -8,8 +8,8 @@ services:
     hostname: scanopy
     # Required for full network visibility and ARP scanning
     network_mode: host 
-    networks:
-      - pvnet
+    #networks:
+    #  - pvnet
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
