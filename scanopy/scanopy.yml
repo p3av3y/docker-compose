@@ -10,7 +10,7 @@ services:
       - pvnet
     env_file: 
       - /env-files/scanopy.env
-    environment:
+    # environment:
       # POSTGRES_DB: ${SCANOPY_DB_NAME}
       # POSTGRES_USER: ${SCANOPY_DB_USER}
       # POSTGRES_PASSWORD: ${SCANOPY_DB_PASSWORD}
