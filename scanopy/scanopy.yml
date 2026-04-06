@@ -11,9 +11,9 @@ services:
     env_file: 
       - /env-files/scanopy.env
     environment:
-      POSTGRES_DB: ${SCANOPY_DB_NAME}
-      POSTGRES_USER: ${SCANOPY_DB_USER}
-      POSTGRES_PASSWORD: ${SCANOPY_DB_PASSWORD}
+      # POSTGRES_DB: ${SCANOPY_DB_NAME}
+      # POSTGRES_USER: ${SCANOPY_DB_USER}
+      # POSTGRES_PASSWORD: ${SCANOPY_DB_PASSWORD}
     volumes:
       - ${DOCKER_APP_BASE_PATH}/scanopy/db:/var/lib/postgresql/data
 
@@ -29,7 +29,7 @@ services:
     env_file: 
       - /env-files/scanopy.env
     environment:
-      - SCANOPY_DATABASE_URL=postgres://${SCANOPY_DB_USER}:${SCANOPY_DB_PASSWORD}@scanopy-db:5432/${SCANOPY_DB_NAME}
+      # - SCANOPY_DATABASE_URL=postgres://${SCANOPY_DB_USER}:${SCANOPY_DB_PASSWORD}@scanopy-db:5432/${SCANOPY_DB_NAME}
       - TZ=${TZ}
     ports:
       - "60072:60072"
