@@ -39,7 +39,8 @@ services:
     ports:
       - "60072:60072"
     volumes:
-      - ${DOCKER_APP_BASE_PATH}/scanopy/config:/app/config
+      #- ${DOCKER_APP_BASE_PATH}/scanopy/config:/app/config
+      - ${DOCKER_APP_BASE_PATH}/scanopy/data:/app/data
 
   scanopy-daemon:
     container_name: scanopy-daemon
