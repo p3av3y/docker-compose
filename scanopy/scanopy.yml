@@ -34,7 +34,7 @@ services:
       - SCANOPY_WEB_EXTERNAL_PATH=/app/static
       #- SCANOPY_DATABASE_URL=postgres://${SCANOPY_DB_USER}:${SCANOPY_DB_PASSWORD}@scanopy-db:5432/${SCANOPY_DB_NAME}
       - SCANOPY_PUBLIC_URL=http://${HOST_IP:-127.0.0.1}:60072
-      - SCANOPY_LOG_LEVEL=debug  # Set to debug to see WHY it's disabling the UI
+      # - SCANOPY_LOG_LEVEL=debug  # Set to debug to see WHY it's disabling the UI
       - TZ=${TZ}
       - HOST=0.0.0.0
       #- SCANOPY_RESET_CONFIG_ON_START=true
