@@ -19,8 +19,8 @@ services:
 
   scanopy-server:
     container_name: scanopy-server
-    #image: ghcr.io/scanopy/scanopy/server:latest
-    image: ghcr.io/scanopy/scanopy/server:0.15.6
+    image: ghcr.io/scanopy/scanopy/server:latest
+    #image: ghcr.io/scanopy/scanopy/server:0.15.6
     hostname: scanopy-server
     restart: unless-stopped
     networks:
@@ -31,12 +31,14 @@ services:
       - /env-files/scanopy.env
     environment:
       - SCANOPY_UI_ENABLED=true
+      - SCANOPY_WEB_EXTERNAL_PATH=/app/static
       #- SCANOPY_DATABASE_URL=postgres://${SCANOPY_DB_USER}:${SCANOPY_DB_PASSWORD}@scanopy-db:5432/${SCANOPY_DB_NAME}
       - SCANOPY_PUBLIC_URL=http://${HOST_IP:-127.0.0.1}:60072
       - SCANOPY_LOG_LEVEL=debug  # Set to debug to see WHY it's disabling the UI
       - TZ=${TZ}
       - HOST=0.0.0.0
-      - SCANOPY_RESET_CONFIG_ON_START=true
+      #- SCANOPY_RESET_CONFIG_ON_START=true
+      #- SCANOPY_INTEGRATED_DAEMON_URL=http://host.docker.internal:60073
     ports:
       - "60072:60072"
     volumes:
