@@ -56,8 +56,11 @@ services:
     env_file: 
       - /env-files/scanopy.env
     environment:
-      - SCANOPY_SERVER_URL=http://127.0.0.1:60072
+      #- SCANOPY_SERVER_URL=http://127.0.0.1:60072
+      - SCANOPY_SERVER_URL=http://${HOST_IP:-127.0.0.1}:60072
       - SCANOPY_LOG_LEVEL=info
+      # - SCANOPY_DAEMON_API_KEY=${DAEMON_KEY}
+      # - SCANOPY_NETWORK_ID=${NET_ID}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
