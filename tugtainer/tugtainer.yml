@@ -23,6 +23,7 @@ services:
     volumes:
       - ${DOCKER_APP_BASE_PATH}/tugtainer/config:/app/config
       - ${DOCKER_APP_BASE_PATH}/tugtainer/data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
 networks:
   pvnet:
