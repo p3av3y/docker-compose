@@ -1,0 +1,27 @@
+# tugtainer
+
+services:
+  tugtainer:
+    container_name: tugtainer
+    image: ghcr.io/quenary/tugtainer:latest
+    restart: unless-stopped
+    hostname: tugtainer
+    networks:
+      - pvnet
+    env_file:
+      - /env-files/tugtainer.env
+    environment:
+      - TZ=${TZ}
+      # Mapping your standard variables to Tugtainer's requirements
+      # - PORTAINER_URL=${PORTAINER_URL}
+      # - PORTAINER_API_KEY=${PORTAINER_API_KEY}
+      # - DISCORD_TOKEN=${DISCORD_TOKEN}
+      # - DISCORD_GUILD_ID=${DISCORD_GUILD_ID}
+      # - DISCORD_CHANNEL_ID=${DISCORD_CHANNEL_ID}
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/tugtainer/config:/app/config
+      - ${DOCKER_APP_BASE_PATH}/tugtainer/data:/app/data
+
+networks:
+  pvnet:
+    external: true
