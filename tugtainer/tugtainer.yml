@@ -8,6 +8,8 @@ services:
     hostname: tugtainer
     networks:
       - pvnet
+    ports:
+      - 9412:80
     env_file:
       - /env-files/tugtainer.env
     environment:
