@@ -1,0 +1,63 @@
+services:
+  forgejo-db:
+    image: postgres:15-alpine
+    container_name: forgejo-db
+    hostname: forgejo-db
+    restart: always
+    env_file:
+      - /env-files/forgejo.env
+    networks:
+      - pvnet
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/forgejo/db:/var/lib/postgresql/data
+
+  forgejo-app:
+    image: codeberg.org/forgejo/forgejo:latest
+    container_name: forgejo-app
+    hostname: forgejo-app
+    restart: always
+    env_file:
+      - /env-files/forgejo.env
+    environment:
+      - FORGEJO__database__DB_TYPE=${FORGEJO_DB_TYPE}
+      - FORGEJO__database__HOST=${FORGEJO_DB_HOST}
+      - FORGEJO__database__NAME=${POSTGRES_DB}
+      - FORGEJO__database__USER=${POSTGRES_USER}
+      - FORGEJO__database__PASSWD=${POSTGRES_PASSWORD}
+      - FORGEJO__server__DOMAIN=${FORGEJO_DOMAIN}
+      - FORGEJO__server__ROOT_URL=${FORGEJO_ROOT_URL}
+      - FORGEJO__actions__ENABLED=${FORGEJO_ACTIONS_ENABLED}
+      - USER_UID=${FORGEJO_UID}
+      - USER_GID=${FORGEJO_GID}
+    networks:
+      - pvnet
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/forgejo/data:/data
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "2222:22"
+    depends_on:
+      - forgejo-db
+
+  forgejo-runner:
+    image: codeberg.org/forgejo/runner:latest
+    container_name: forgejo-runner
+    hostname: forgejo-runner
+    restart: always
+    env_file:
+      - /env-files/forgejo.env
+    environment:
+      - FORGEJO_INSTANCE_URL=http://forgejo-app:3000
+      # Use Portainer to inject FORGEJO_RUNNER_REGISTRATION_TOKEN here once generated
+    networks:
+      - pvnet
+    volumes:
+      - ${DOCKER_APP_BASE_PATH}/forgejo/runner:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - forgejo-app
+
+networks:
+  pvnet:
+    external: true
