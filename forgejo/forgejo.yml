@@ -13,7 +13,7 @@ services:
 
   forgejo-app:
     # image: codeberg.org/forgejo/forgejo:14
-    image: codeberg.org/forgejo/forgejo:14.0.3
+    image: codeberg.org/forgejo/forgejo:14
     container_name: forgejo-app
     hostname: forgejo-app
     restart: always
@@ -41,24 +41,24 @@ services:
     depends_on:
       - forgejo-db
 
-  forgejo-runner:
+  #forgejo-runner:
     # image: codeberg.org/forgejo/runner:6.0
-    image: code.forgejo.org/oci/forgejo-runner:6.0.1
-    container_name: forgejo-runner
-    hostname: forgejo-runner
-    restart: always
-    env_file:
-      - /env-files/forgejo.env
-    environment:
-      - FORGEJO_INSTANCE_URL=http://forgejo-app:3000
+  #  image: code.forgejo.org/oci/forgejo-runner:6.0.1
+  #  container_name: forgejo-runner
+  #  hostname: forgejo-runner
+  #  restart: always
+  #  env_file:
+  #    - /env-files/forgejo.env
+  #  environment:
+  #    - FORGEJO_INSTANCE_URL=http://forgejo-app:3000
       # Use Portainer to inject FORGEJO_RUNNER_REGISTRATION_TOKEN here once generated
-    networks:
-      - pvnet
-    volumes:
-      - ${DOCKER_APP_BASE_PATH}/forgejo/runner:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-    depends_on:
-      - forgejo-app
+  #  networks:
+  #    - pvnet
+  #  volumes:
+  #    - ${DOCKER_APP_BASE_PATH}/forgejo/runner:/data
+  #    - /var/run/docker.sock:/var/run/docker.sock
+  #  depends_on:
+  #    - forgejo-app
 
 networks:
   pvnet:
