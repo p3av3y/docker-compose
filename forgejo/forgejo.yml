@@ -12,7 +12,7 @@ services:
       - ${DOCKER_APP_BASE_PATH}/forgejo/db:/var/lib/postgresql/data
 
   forgejo-app:
-    image: codeberg.org/forgejo/forgejo:10
+    image: codeberg.org/forgejo/forgejo:14
     container_name: forgejo-app
     hostname: forgejo-app
     restart: always
