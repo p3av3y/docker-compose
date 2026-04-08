@@ -13,7 +13,7 @@ services:
 
   forgejo-app:
     # image: codeberg.org/forgejo/forgejo:14
-    image: code.forgejo.org/forgejo/forgejo:14.0
+    image: code.forgejo.org/forgejo/forgejo:10.0
     container_name: forgejo-app
     hostname: forgejo-app
     restart: always
